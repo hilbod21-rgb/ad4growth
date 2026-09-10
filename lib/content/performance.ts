@@ -1,0 +1,358 @@
+import type { Locale } from "@/lib/config";
+import { tr } from "./copy";
+export function labCopy(l: Locale) {
+  return {
+    title: tr(
+      l,
+      ["Ihr Budget.", "Ein messbares System."],
+      ["Your budget.", "A measurable system."],
+      ["Ваш бюджет.", "Вимірювана система."],
+      ["Ваш бюджет.", "Измеримая система."],
+    ),
+    intro: tr(
+      l,
+      "Was wird aus Ihrem Werbebudget? Verändern Sie die Annahmen und verfolgen Sie den Weg von Nachfrage zu Geschäftswert.",
+      "What happens to your ad spend? Change the scenario and follow the path from intent to business value.",
+      "Що відбувається з рекламним бюджетом? Змініть сценарій і простежте шлях від попиту до цінності для бізнесу.",
+      "Что происходит с рекламным бюджетом? Измените сценарий и проследите путь от спроса к ценности для бизнеса.",
+    ),
+    demo: tr(
+      l,
+      "DEMODATEN · NUR ZUR VERANSCHAULICHUNG",
+      "DEMO DATA · FOR ILLUSTRATION ONLY",
+      "ДЕМОДАНІ · ЛИШЕ ДЛЯ ІЛЮСТРАЦІЇ",
+      "ДЕМОДАННЫЕ · ТОЛЬКО ДЛЯ ИЛЛЮСТРАЦИИ",
+    ),
+    labels: tr(
+      l,
+      [
+        "Werbebudget",
+        "Impressionen",
+        "Klicks",
+        "Conversions",
+        "Neue Kunden",
+        "Umsatz",
+      ],
+      [
+        "Ad spend",
+        "Impressions",
+        "Clicks",
+        "Conversions",
+        "New customers",
+        "Revenue",
+      ],
+      [
+        "Рекламний бюджет",
+        "Покази",
+        "Кліки",
+        "Конверсії",
+        "Нові клієнти",
+        "Дохід",
+      ],
+      [
+        "Рекламный бюджет",
+        "Показы",
+        "Клики",
+        "Конверсии",
+        "Новые клиенты",
+        "Выручка",
+      ],
+    ),
+    adjust: tr(
+      l,
+      "Werbebudget verändern",
+      "Adjust ad spend",
+      "Змінити рекламний бюджет",
+      "Изменить рекламный бюджет",
+    ),
+    reset: tr(
+      l,
+      "Szenario zurücksetzen",
+      "Reset scenario",
+      "Скинути сценарій",
+      "Сбросить сценарий",
+    ),
+    linked: tr(
+      l,
+      "Zusammenhängende Kennzahlen",
+      "Connected metrics",
+      "Пов’язані показники",
+      "Связанные показатели",
+    ),
+    inspect: tr(
+      l,
+      "Eine Stufe oder Kennzahl auswählen, um die Rechnung zu öffnen.",
+      "Select a stage or metric to inspect the calculation.",
+      "Оберіть етап або показник, щоб побачити розрахунок.",
+      "Выберите этап или показатель, чтобы увидеть расчёт.",
+    ),
+    baseline: tr(
+      l,
+      "gegenüber dem Ausgangsszenario",
+      "versus the initial scenario",
+      "порівняно з початковим сценарієм",
+      "по сравнению с исходным сценарием",
+    ),
+    assumptionTitle: tr(
+      l,
+      "Annahmen der Modellrechnung",
+      "Model assumptions",
+      "Припущення моделі",
+      "Допущения модели",
+    ),
+    assumptionNote: tr(
+      l,
+      "Feste Beispielwerte, keine Plattform-Benchmarks oder Prognosen. Jede Stufe wird auf ganze Aktionen gerundet. CAC enthält das monatliche Management beider Kanäle, aber kein einmaliges Setup. Weitere Akquisitionskosten sind im Beispiel 0. Umsatz ist kein Gewinn.",
+      "Fixed teaching inputs, not platform benchmarks or forecasts. Each stage is rounded to whole actions. CAC includes monthly management of both channels, but no one-time setup. Other acquisition costs are assumed to be zero. Revenue is not profit.",
+      "Умовні фіксовані значення, не показники платформ і не прогноз. Кожен етап округлено до цілих дій. CAC включає місячне управління обома каналами, але не разове налаштування. Інші витрати на залучення прийнято за 0. Дохід — не прибуток.",
+      "Условные фиксированные значения, не показатели платформ и не прогноз. Каждый этап округлён до целых действий. CAC включает месячное управление обоими каналами, но не разовую настройку. Другие затраты на привлечение приняты за 0. Выручка — не прибыль.",
+    ),
+    assumptions: tr(
+      l,
+      [
+        "CPC-Annahme",
+        "Conversion-Rate",
+        "Anfrage → Kunde",
+        "Umsatz / Kunde",
+        "CTR-Annahme",
+      ],
+      [
+        "CPC assumption",
+        "Conversion rate",
+        "Inquiry → customer",
+        "Revenue / customer",
+        "CTR assumption",
+      ],
+      [
+        "Припущення CPC",
+        "Частка конверсій",
+        "Запит → клієнт",
+        "Дохід / клієнт",
+        "Припущення CTR",
+      ],
+      [
+        "Допущение CPC",
+        "Доля конверсий",
+        "Заявка → клиент",
+        "Выручка / клиент",
+        "Допущение CTR",
+      ],
+    ),
+    allocationTitle: tr(
+      l,
+      ["Nicht nur ausgeben.", "Bewusst verteilen."],
+      ["Don’t just spend.", "Allocate deliberately."],
+      ["Не просто витрачати.", "Розподіляти свідомо."],
+      ["Не просто тратить.", "Распределять осознанно."],
+    ),
+    allocationIntro: tr(
+      l,
+      "Was tun wir mit Ihrem Budget? Signale messen, Qualität vergleichen und die nächste Investition begründen. Probieren Sie die Verteilung aus.",
+      "What do we do with your budget? Measure signals, compare quality and justify the next investment. Try changing the allocation.",
+      "Що ми робимо з вашим бюджетом? Вимірюємо сигнали, порівнюємо якість та обґрунтовуємо наступні витрати. Спробуйте змінити розподіл.",
+      "Что мы делаем с вашим бюджетом? Измеряем сигналы, сравниваем качество и обосновываем следующие расходы. Попробуйте изменить распределение.",
+    ),
+    allocationLabel: tr(
+      l,
+      "Budgetanteil Google Ads",
+      "Google Ads budget share",
+      "Частка бюджету Google Ads",
+      "Доля бюджета Google Ads",
+    ),
+    demoDecision: tr(
+      l,
+      "Entscheidung im Beispiel",
+      "Decision in this example",
+      "Рішення в прикладі",
+      "Решение в примере",
+    ),
+    decision: tr(
+      l,
+      "Google erzeugt in dieser Modellrechnung günstigere Anfragen. Ein größerer Anteil ist eine Testhypothese – erst Kundenqualität, Marge und ausreichend Daten rechtfertigen eine echte Umschichtung.",
+      "Google generates lower-cost inquiries in this model. A larger share is a test hypothesis. Customer quality, margin and sufficient data must justify a real reallocation.",
+      "Google у цій моделі дає дешевші запити. Більша частка бюджету — гіпотеза для тесту. Реальний перерозподіл мають обґрунтувати якість клієнтів, маржа та достатні дані.",
+      "Google в этой модели даёт более дешёвые заявки. Большая доля бюджета — гипотеза для теста. Реальное перераспределение должны обосновывать качество клиентов, маржа и достаточные данные.",
+    ),
+    perEuro: tr(
+      l,
+      "Von jedem Euro Werbebudget",
+      "Of each euro of ad spend",
+      "З кожного євро рекламного бюджету",
+      "Из каждого евро рекламного бюджета",
+    ),
+    steps: tr(
+      l,
+      [
+        [
+          "Messen",
+          "Welche Aktionen und Kosten können wir zuverlässig erfassen?",
+        ],
+        [
+          "Vergleichen",
+          "Wie unterscheiden sich Kosten, Kundenqualität und Geschäftswert?",
+        ],
+        ["Umschichten", "Welcher Budgetanteil ist durch die Daten begründet?"],
+        ["Testen", "Welche einzelne Hypothese soll der nächste Test prüfen?"],
+        [
+          "Skalieren / Stoppen",
+          "Bestätigte Ansätze ausbauen. Unwirksame Tests beenden.",
+        ],
+      ],
+      [
+        ["Measure", "Which actions and costs can we reliably capture?"],
+        [
+          "Compare",
+          "How do costs, customer quality and business value differ?",
+        ],
+        ["Reallocate", "Which budget share is supported by the evidence?"],
+        ["Test", "Which single hypothesis should the next test address?"],
+        ["Scale / stop", "Expand validated approaches. End ineffective tests."],
+      ],
+      [
+        ["Вимірювати", "Які дії та витрати ми можемо надійно фіксувати?"],
+        [
+          "Порівнювати",
+          "Як відрізняються витрати, якість клієнтів і бізнес-цінність?",
+        ],
+        ["Перерозподіляти", "Яка частка бюджету обґрунтована даними?"],
+        ["Тестувати", "Яку окрему гіпотезу перевірить наступний тест?"],
+        [
+          "Масштабувати / зупиняти",
+          "Розвивати підтверджені підходи. Завершувати неефективні тести.",
+        ],
+      ],
+      [
+        ["Измерять", "Какие действия и расходы мы можем надёжно фиксировать?"],
+        [
+          "Сравнивать",
+          "Как различаются расходы, качество клиентов и ценность для бизнеса?",
+        ],
+        ["Перераспределять", "Какая доля бюджета обоснована данными?"],
+        ["Тестировать", "Какую отдельную гипотезу проверит следующий тест?"],
+        [
+          "Масштабировать / останавливать",
+          "Развивать подтверждённые подходы. Завершать неэффективные тесты.",
+        ],
+      ],
+    ),
+    cycleTitle: tr(
+      l,
+      ["Setup ist der Anfang.", "Management ist die Arbeit danach."],
+      ["Setup is the start.", "Management is what follows."],
+      ["Налаштування — початок.", "Управління — робота після нього."],
+      ["Настройка — начало.", "Управление — работа после неё."],
+    ),
+    cycleIntro: tr(
+      l,
+      "Wofür zahlen Sie monatlich? Für einen wiederkehrenden Entscheidungsprozess. So kann ein Monat nach dem Launch aussehen.",
+      "What does the monthly fee cover? A recurring decision process. Here is what a month after launch can look like.",
+      "За що ви платите щомісяця? За постійний процес прийняття рішень. Ось як може виглядати місяць після запуску.",
+      "За что вы платите ежемесячно? За постоянный процесс принятия решений. Вот как может выглядеть месяц после запуска.",
+    ),
+    cycleNote: tr(
+      l,
+      "Beispielhafter Arbeitsrhythmus, kein garantierter Zeitplan. Prioritäten folgen Datenlage, Kanalzugang und vereinbartem Umfang.",
+      "An illustrative working rhythm, not a guaranteed schedule. Priorities follow the data, channel access and agreed scope.",
+      "Приклад робочого ритму, не гарантований розклад. Пріоритети залежать від даних, доступу до каналу та узгодженого обсягу.",
+      "Пример рабочего ритма, не гарантированное расписание. Приоритеты зависят от данных, доступа к каналу и согласованного объёма.",
+    ),
+    outcome: tr(
+      l,
+      "Ergebnis der Arbeit",
+      "Work output",
+      "Результат роботи",
+      "Результат работы",
+    ),
+    weeks: tr(
+      l,
+      [
+        [
+          "Messung prüfen",
+          "Tracking validieren, Datenlücken erkennen, Suchbegriffe oder verfügbare Signale prüfen.",
+          "Eine belastbare Ausgangsbasis und eine priorisierte Liste offener Messfragen.",
+        ],
+        [
+          "Qualität vergleichen",
+          "Google-Suchbegriffe ausschließen, sofern irrelevant. Kanalqualität und Budgetanteile vergleichen.",
+          "Eine begründete Budgetentscheidung mit dokumentierten Annahmen.",
+        ],
+        [
+          "Eine Hypothese testen",
+          "Anzeigentest vorbereiten und Zielseite analysieren. Bei ChatGPT nur tatsächlich verfügbare Stellgrößen nutzen.",
+          "Ein abgegrenzter Test mit Ziel, Messgröße und Auswertungskriterium.",
+        ],
+        [
+          "Bewerten & weiterplanen",
+          "Ergebnisse und Kundenqualität prüfen. Fortsetzen, skalieren oder stoppen; den nächsten Test festlegen.",
+          "Ein verständlicher Performance-Bericht und die nächste Entscheidung.",
+        ],
+      ],
+      [
+        [
+          "Validate measurement",
+          "Validate tracking, identify data gaps and review search terms or available signals.",
+          "A reliable baseline and a prioritized list of measurement questions.",
+        ],
+        [
+          "Compare quality",
+          "Exclude irrelevant Google search terms. Compare channel quality and allocation.",
+          "An evidence-based budget decision with documented assumptions.",
+        ],
+        [
+          "Test one hypothesis",
+          "Prepare an ad test and analyze the destination page. Use only actually available controls for ChatGPT.",
+          "A bounded test with an objective, metric and evaluation criterion.",
+        ],
+        [
+          "Review & plan ahead",
+          "Review outcomes and customer quality. Continue, scale or stop; define the next test.",
+          "A clear performance report and the next decision.",
+        ],
+      ],
+      [
+        [
+          "Перевірити вимірювання",
+          "Перевірити трекінг, знайти прогалини в даних, проаналізувати запити або доступні сигнали.",
+          "Надійна початкова база й пріоритетний список питань до вимірювання.",
+        ],
+        [
+          "Порівняти якість",
+          "Виключити нерелевантні запити Google. Порівняти якість каналів і розподіл бюджету.",
+          "Обґрунтоване бюджетне рішення із зафіксованими припущеннями.",
+        ],
+        [
+          "Перевірити одну гіпотезу",
+          "Підготувати тест оголошення й аналіз сторінки. Для ChatGPT використовувати лише доступні параметри.",
+          "Обмежений тест із метою, показником і критерієм оцінювання.",
+        ],
+        [
+          "Оцінити й спланувати",
+          "Оцінити результати та якість клієнтів. Продовжити, масштабувати чи зупинити; визначити наступний тест.",
+          "Зрозумілий звіт про ефективність і наступне рішення.",
+        ],
+      ],
+      [
+        [
+          "Проверить измерение",
+          "Проверить трекинг, найти пробелы в данных, проанализировать запросы или доступные сигналы.",
+          "Надёжная исходная база и приоритетный список вопросов к измерению.",
+        ],
+        [
+          "Сравнить качество",
+          "Исключить нерелевантные запросы Google. Сравнить качество каналов и распределение бюджета.",
+          "Обоснованное бюджетное решение с зафиксированными допущениями.",
+        ],
+        [
+          "Проверить одну гипотезу",
+          "Подготовить тест объявления и анализ страницы. Для ChatGPT использовать только доступные параметры.",
+          "Ограниченный тест с целью, показателем и критерием оценки.",
+        ],
+        [
+          "Оценить и спланировать",
+          "Оценить результаты и качество клиентов. Продолжить, масштабировать или остановить; определить следующий тест.",
+          "Понятный отчёт об эффективности и следующее решение.",
+        ],
+      ],
+    ),
+  };
+}
