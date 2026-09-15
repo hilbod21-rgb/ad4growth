@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   type Article,
   type ArticleBlock,
@@ -125,7 +124,7 @@ export function ArticlePage({ article: a }: { article: Article }) {
         <h1>{a.title}</h1>
         <p>{a.description}</p>
         <div className="article-meta">
-          <Link
+          <a
             href={
               a.author.type === "Person"
                 ? `/${lang}/#operator`
@@ -133,7 +132,7 @@ export function ArticlePage({ article: a }: { article: Article }) {
             }
           >
             {a.author.name}
-          </Link>
+          </a>
           <span>{a.readingMinutes} min</span>
           <span>
             {tr(lang, "Stand", "Updated", "Оновлено", "Обновлено")}{" "}
@@ -188,7 +187,7 @@ export function ArticlePage({ article: a }: { article: Article }) {
                 : tr(lang, "AUTOR", "AUTHOR", "АВТОР", "АВТОР")}
             </span>
             <h3>
-              <Link
+              <a
                 href={
                   a.author.type === "Person"
                     ? `/${lang}/#operator`
@@ -196,7 +195,7 @@ export function ArticlePage({ article: a }: { article: Article }) {
                 }
               >
                 {a.author.name}
-              </Link>
+              </a>
             </h3>
             <p>{a.author.role}</p>
           </div>
@@ -223,9 +222,9 @@ export function ArticlePage({ article: a }: { article: Article }) {
           {related.length > 0 && (
             <nav>
               {related.map((r) => (
-                <Link key={r.slug} href={`/${lang}/insights/${r.slug}`}>
+                <a key={r.slug} href={`/${lang}/insights/${r.slug}`}>
                   {r.title}
-                </Link>
+                </a>
               ))}
             </nav>
           )}

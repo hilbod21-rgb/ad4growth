@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import {
   useEffect,
   useRef,
@@ -96,7 +95,7 @@ export function InteractiveWordmark({ lang }: { lang: Locale }) {
       });
   }
   return (
-    <Link
+    <a
       href={`/${lang}`}
       ref={ref}
       className="interactive-wordmark"
@@ -115,6 +114,6 @@ export function InteractiveWordmark({ lang }: { lang: Locale }) {
           <span className="wordmark-glyph">{letter}</span>
         </span>
       ))}
-    </Link>
+    </a>
   );
 }

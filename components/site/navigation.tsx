@@ -6,7 +6,6 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { useEffect, useSyncExternalStore } from "react";
-import Link from "next/link";
 import { InteractiveWordmark } from "./interactive-wordmark";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
@@ -27,9 +26,9 @@ export function TrackedLink({
   className?: string;
 }) {
   return (
-    <Link {...props} onClick={() => track(event, parameters)}>
+    <a {...props} onClick={() => track(event, parameters)}>
       {children}
-    </Link>
+    </a>
   );
 }
 export function PageEvents({ lang, path }: { lang: Locale; path: string }) {
@@ -63,7 +62,7 @@ export function Languages({ lang, path }: { lang: Locale; path: string }) {
       <DropdownMenuContent align="end" className="language-dropdown">
         {business.languages.map((l) => (
           <DropdownMenuItem asChild key={l}>
-            <Link
+            <a
               href={`/${l}${path}`}
               aria-current={l === lang ? "page" : undefined}
               onClick={() =>
@@ -79,7 +78,7 @@ export function Languages({ lang, path }: { lang: Locale; path: string }) {
                 }[l]
               }{" "}
               {l === lang ? "✓" : ""}
-            </Link>
+            </a>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
@@ -135,7 +134,7 @@ export function Header({ lang, path, blogEnabled = false }: { lang: Locale; path
         <InteractiveWordmark lang={lang} />
         <nav className="desktop-nav" aria-label="Main">
           {links.map((s, i) => s === "insights" && !blogEnabled ? null : (
-            <Link
+            <a
               key={s}
               href={`/${lang}/${s}`}
               aria-current={path === `/${s}` ? "page" : undefined}
@@ -148,9 +147,9 @@ export function Header({ lang, path, blogEnabled = false }: { lang: Locale; path
                     ru: "Blog",
                   }[lang]
                 : c.nav[i]}
-            </Link>
+            </a>
           ))}
-          <Link href={`/${lang}#approach`}>
+          <a href={`/${lang}#approach`}>
             {
               {
                 de: "Betreuung",
@@ -159,18 +158,18 @@ export function Header({ lang, path, blogEnabled = false }: { lang: Locale; path
                 ru: "Управление",
               }[lang]
             }
-          </Link>
+          </a>
         </nav>
-        <Link className="header-cta" href={`/${lang}/contact`}>
+        <a className="header-cta" href={`/${lang}/contact`}>
           {c.cta} ↗
-        </Link>
+        </a>
         <ThemeToggle lang={lang} />
         <Languages lang={lang} path={path} />
         <details className="mobile-menu" key={usePathname()}>
           <summary aria-label="Menu">☰</summary>
           <nav>
             {links.map((s, i) => s === "insights" && !blogEnabled ? null : (
-              <Link key={s} href={`/${lang}/${s}`}>
+              <a key={s} href={`/${lang}/${s}`}>
                 {i === 2
                   ? {
                       de: "Blog",
@@ -179,9 +178,9 @@ export function Header({ lang, path, blogEnabled = false }: { lang: Locale; path
                       ru: "Blog",
                     }[lang]
                   : c.nav[i]}
-              </Link>
+              </a>
             ))}
-            <Link href={`/${lang}#approach`}>
+            <a href={`/${lang}#approach`}>
               {
                 {
                   de: "Betreuung",
@@ -190,7 +189,7 @@ export function Header({ lang, path, blogEnabled = false }: { lang: Locale; path
                   ru: "Управление",
                 }[lang]
               }
-            </Link>
+            </a>
           </nav>
         </details>
       </header>

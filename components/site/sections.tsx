@@ -1,5 +1,4 @@
 import { publishedArticles } from "@/lib/content/articles";
-import Link from "next/link";
 import { InteractiveWordmark } from "./interactive-wordmark";
 import { Fragment } from "react";
 import { scopeCopy } from "@/lib/content/scope";
@@ -101,9 +100,9 @@ export function Footer({ lang, path }: { lang: Locale; path: string }) {
         <nav aria-label="Footer">
           {["google-ads", "chatgpt-ads", "insights", "about", "contact"].map(
             (s, i) => s === "insights" && !publishedArticles(lang).length ? null : (
-              <Link key={s} href={`/${lang}/${s}`}>
+              <a key={s} href={`/${lang}/${s}`}>
                 {i < 4 ? c.nav[i] : c.contact}
-              </Link>
+              </a>
             ),
           )}
         </nav>
@@ -131,8 +130,8 @@ export function Footer({ lang, path }: { lang: Locale; path: string }) {
         <span>© {new Date().getFullYear()} AD4GROWTH</span>
         <span>PAID ACQUISITION / MEASUREMENT / OPTIMIZATION</span>
         <div>
-          <Link href={`/${lang}/impressum`}>{c.imprint}</Link>
-          <Link href={`/${lang}/datenschutz`}>{c.privacy}</Link>
+          <a href={`/${lang}/impressum`}>{c.imprint}</a>
+          <a href={`/${lang}/datenschutz`}>{c.privacy}</a>
         </div>
       </div>
     </footer>
@@ -141,7 +140,7 @@ export function Footer({ lang, path }: { lang: Locale; path: string }) {
 export function Breadcrumb({ lang, title }: { lang: Locale; title: string }) {
   return (
     <nav className="breadcrumb wrap" aria-label="Breadcrumb">
-      <Link href={`/${lang}`}>{copy(lang).home}</Link>
+      <a href={`/${lang}`}>{copy(lang).home}</a>
       <span>/</span>
       <span>{title}</span>
     </nav>
@@ -166,13 +165,13 @@ export function BottomCTA({
           "От плана к следующему шагу",
         )}
       </h2>
-      <Link
+      <a
         className="button"
         href={`/${lang}/contact${service ? `?service=${service}` : ""}`}
       >
         {c.cta}
         <span>↗</span>
-      </Link>
+      </a>
     </section>
   );
 }

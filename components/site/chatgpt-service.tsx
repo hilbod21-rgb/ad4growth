@@ -1,5 +1,4 @@
 import { ServicePrice, ServiceScope } from "./service-commercial";
-import Link from "next/link";
 import { type Locale } from "@/lib/config";
 import { copy, tr } from "@/lib/content/copy";
 import { serviceCopy } from "@/lib/content/services";
@@ -32,12 +31,12 @@ export function ChatGPTService({ lang }: { lang: Locale }) {
             )}
           </p>
           <ServicePrice lang={lang} chat />
-          <Link
+          <a
             className="button"
             href={`/${lang}/contact?service=chatgpt_ads`}
           >
             {c.serviceCta("ChatGPT Ads")} <span>↗</span>
-          </Link>
+          </a>
           <a className="chat-price-link" href="#scope">
             {tr(
               lang,

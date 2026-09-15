@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { type Locale } from "@/lib/config";
 import { copy, tr } from "@/lib/content/copy";
 import { serviceCopy } from "@/lib/content/services";
@@ -30,9 +29,9 @@ export function GoogleService({ lang }: { lang: Locale }) {
               "Google Ads для бизнеса, который хочет превращать целевые поисковые запросы в обращения и покупки. Берём на себя исследование, настройку кампаний, трекинг и постоянную оптимизацию.",
             )}
           </p>
-          <Link className="button" href={`/${lang}/contact?service=google_ads`}>
+          <a className="button" href={`/${lang}/contact?service=google_ads`}>
             {c.serviceCta("Google Ads")} ↗
-          </Link>
+          </a>
         </div>
         <aside className="service-commercial-aside">
           <p className="kicker">

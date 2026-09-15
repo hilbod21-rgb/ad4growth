@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Operator } from "./operator";
 import { business, euro, setupPrice, monthlyPrice, type Locale } from "@/lib/config";
 import { copy, tr } from "@/lib/content/copy";
@@ -90,7 +89,7 @@ export function Home({ lang }: { lang: Locale }) {
               <div className="new-product-price" key={s.id}>
                 <div className="product-price-title">
                   <span>{s.number}</span>
-                  <Link href={`/${lang}/${s.slug}`}>{s.name} ↗</Link>
+                  <a href={`/${lang}/${s.slug}`}>{s.name} ↗</a>
                 </div>
                 <p>{i ? "Conversational intent" : "Search intent"}</p>
                 <div className="new-price-grid">
@@ -242,9 +241,9 @@ export function Home({ lang }: { lang: Locale }) {
                 "Конкретная потребность. Ваше предложение в нужный момент.",
               )}
             </p>
-            <Link className="text-link" href={`/${lang}/google-ads`}>
+            <a className="text-link" href={`/${lang}/google-ads`}>
               {c.explore} ↗
-            </Link>
+            </a>
           </article>
           <article className="conversation-story">
             <div className="channel-number" aria-hidden="true">
@@ -298,9 +297,9 @@ export function Home({ lang }: { lang: Locale }) {
                 "Отдельный рекламный канал. Не купленные рекомендации в ответах ИИ.",
               )}
             </p>
-            <Link className="text-link" href={`/${lang}/chatgpt-ads`}>
+            <a className="text-link" href={`/${lang}/chatgpt-ads`}>
               {c.explore} ↗
-            </Link>
+            </a>
             <p className="platform-footnote">
               {c.availability} <a href="https://ads.openai.com/">OpenAI ↗</a>
             </p>
@@ -329,17 +328,17 @@ export function Home({ lang }: { lang: Locale }) {
               "О рекламе, привлечении клиентов и решениях за ними.",
             )}
           </p>
-          <Link className="text-link" href={`/${lang}/insights`}>
+          <a className="text-link" href={`/${lang}/insights`}>
             {tr(lang, "Zum Blog", "Read the blog", "До блогу", "Открыть блог")}{" "}
             ↗
-          </Link>
+          </a>
         </div>
         <div className="journal-preview">
           {publishedArticles(lang).length ? (
             publishedArticles(lang)
               .slice(0, 2)
               .map((a) => (
-                <Link
+                <a
                   className="featured-insight"
                   key={a.slug}
                   href={`/${lang}/insights/${a.slug}`}
@@ -347,7 +346,7 @@ export function Home({ lang }: { lang: Locale }) {
                   <div>{a.category}</div>
                   <h3>{a.title}</h3>
                   <p>{a.description}</p>
-                </Link>
+                </a>
               ))
           ) : (
             <p>
@@ -383,9 +382,9 @@ export function Home({ lang }: { lang: Locale }) {
               ))}
           </h2>
           <p>{c.contactBody}</p>
-          <Link className="button" href={`/${lang}/contact`}>
+          <a className="button" href={`/${lang}/contact`}>
             {c.cta} <span>↗</span>
-          </Link>
+          </a>
         </div>
       </section>
     </div>
