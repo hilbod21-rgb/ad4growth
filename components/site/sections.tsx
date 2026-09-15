@@ -96,7 +96,7 @@ export function Footer({ lang, path }: { lang: Locale; path: string }) {
       <div className="footer-top">
         <div>
           <InteractiveWordmark lang={lang} />
-          <p>Advertising for Growth.</p>
+          <p>Advertising for Growth</p>
         </div>
         <nav aria-label="Footer">
           {["google-ads", "chatgpt-ads", "insights", "about", "contact"].map(

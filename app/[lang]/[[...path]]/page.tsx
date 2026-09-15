@@ -37,8 +37,8 @@ function pageTitle(lang: Locale, path: string) {
   return path === ""
     ? tr(
         lang,
-        "Google Ads & ChatGPT Ads für messbares Wachstum",
-        "Google Ads & ChatGPT Ads for measurable growth",
+        "Performance Marketing: Google Ads & ChatGPT Ads",
+        "Performance Marketing: Google Ads & ChatGPT Ads",
         "Google Ads та ChatGPT Ads для вимірюваного зростання",
         "Google Ads и ChatGPT Ads для измеримого роста",
       )
@@ -55,8 +55,8 @@ function pageTitle(lang: Locale, path: string) {
               : path === "insights"
                 ? "Blog"
                 : path === "google-ads"
-                  ? "Google Ads"
-                  : "ChatGPT Ads";
+                  ? tr(lang, "Google Ads Betreuung & SEA", "Google Ads management & paid search", "Управління Google Ads та пошукова реклама", "Управление Google Ads и поисковая реклама")
+                  : tr(lang, "ChatGPT Ads: Strategie & Betreuung", "ChatGPT Ads strategy & management", "ChatGPT Ads: стратегія та управління", "ChatGPT Ads: стратегия и управление");
 }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, path = [] } = await params;
@@ -332,6 +332,7 @@ export default async function Page({ params }: Props) {
               <p className="eyebrow">LET’S TALK BUSINESS</p>
               <h1 className="pre-line">{c.contactTitle}</h1>
               <p>{c.contactBody}</p>
+              <a className="text-link" href="mailto:contact@ad4growth.com">contact@ad4growth.com ↗</a>
               <div className="contact-signature">
                 AD4GROWTH
                 <br />

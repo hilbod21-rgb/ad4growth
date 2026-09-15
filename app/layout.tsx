@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Google Ads und ChatGPT Ads. Paid Acquisition, Measurement und Optimization.",
   verification: { google: process.env.GOOGLE_SITE_VERIFICATION || undefined },
-  icons: { icon: "/favicon.svg" },
+  icons: { icon: "/favicon.svg?v=olive-orange" },
 };
 export default async function RootLayout({
   children,

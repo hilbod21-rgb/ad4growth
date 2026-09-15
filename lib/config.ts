@@ -15,7 +15,7 @@ export const business = {
     linkedin: null as string | null,
   },
   contact: {
-    email: null as string | null,
+    email: "contact@ad4growth.com" as string | null,
     whatsapp: null as string | null,
     telegram: null as string | null,
   },

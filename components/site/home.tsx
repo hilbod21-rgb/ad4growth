@@ -18,17 +18,9 @@ export function Home({ lang }: { lang: Locale }) {
     <div className="new-home">
       <div className="hero-band">
         <section className="new-hero wrap" id="pricing">
-          <svg className="brand-circulation" viewBox="0 0 1400 720" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-            <g fill="none" stroke="currentColor" strokeWidth="1" vectorEffect="non-scaling-stroke">
-              <path d="M180 0 C180 45 660 24 690 120 S680 360 690 475 S470 670 180 670" />
-              <path d="M690 190 C735 190 735 245 790 245 H1110" />
-              <path d="M690 360 C750 360 742 440 795 440 H1110" />
-              <path d="M690 475 C660 525 575 540 510 540 H370" />
-              <path d="M800 245 C845 245 850 208 890 208 H945 M800 440 C840 440 850 480 900 480 H945" />
-            </g>
-          </svg>
+
           <div className="new-hero-copy">
-            <p className="kicker">PERFORMANCE MARKETING · SEARCH &amp; AI</p>
+            <p className="kicker">PERFORMANCE MARKETING · PAID ACQUISITION</p>
             <h1>
               {words[0]}
               <br />

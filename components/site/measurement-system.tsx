@@ -15,7 +15,6 @@ import {
   TableRow,
   TableHead,
   TableCell,
-  TableCaption,
 } from "@/components/ui/table";
 const links: Record<string, number[]> = {
   CTR: [1, 2],
@@ -255,15 +254,7 @@ export function MeasurementSystem({ lang }: { lang: Locale }) {
           </p>
         </div>
         <Table className="management-table">
-          <TableCaption>
-            {tr(
-              lang,
-              "Suchbegriffe und Gebote beziehen sich auf Google Ads. Bei ChatGPT Ads richten sich die Maßnahmen nach den verfügbaren Funktionen und Messmöglichkeiten.",
-              "Search terms and bids refer to Google Ads. ChatGPT Ads management depends on available features and measurement.",
-              "Пошукові запити та ставки стосуються Google Ads. Дії в ChatGPT Ads залежать від доступних функцій і вимірювання.",
-              "Поисковые запросы и ставки относятся к Google Ads. Действия в ChatGPT Ads зависят от доступных функций и измерения.",
-            )}
-          </TableCaption>
+
           <TableHeader>
             <TableRow>
               {tr(
@@ -286,6 +277,12 @@ export function MeasurementSystem({ lang }: { lang: Locale }) {
               <TableRow key={row[0]}>
                 {row.map((s, i) => (
                   <TableCell key={s} data-column={i}>
+                    {i > 0 && <span className="management-mobile-label">{tr(lang,
+                      ["", "Was wir prüfen / bearbeiten", "Was Sie daraus erhalten"],
+                      ["", "What we review / manage", "What you receive"],
+                      ["", "Що перевіряємо / робимо", "Що ви отримуєте"],
+                      ["", "Что проверяем / делаем", "Что вы получаете"]
+                    )[i]}</span>}
                     {s}
                   </TableCell>
                 ))}
@@ -293,6 +290,15 @@ export function MeasurementSystem({ lang }: { lang: Locale }) {
             ))}
           </TableBody>
         </Table>
+          <p className="management-note">
+            {tr(
+              lang,
+              "Suchbegriffe und Gebote beziehen sich auf Google Ads. Bei ChatGPT Ads richten sich die Maßnahmen nach den verfügbaren Funktionen und Messmöglichkeiten.",
+              "Search terms and bids refer to Google Ads. ChatGPT Ads management depends on available features and measurement.",
+              "Пошукові запити та ставки стосуються Google Ads. Дії в ChatGPT Ads залежать від доступних функцій і вимірювання.",
+              "Поисковые запросы и ставки относятся к Google Ads. Действия в ChatGPT Ads зависят от доступных функций и измерения.",
+            )}
+          </p>
         <div className="management-ownership">
           <strong>
             {tr(

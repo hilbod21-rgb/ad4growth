@@ -1,3 +1,5 @@
+> Current target: independent Cloudflare Workers; Contabo is paused. See [Cloudflare deployment](docs/CLOUDFLARE.md).
+
 # AD4GROWTH — original source
 
 Existing website preserved, prepared for independent Node hosting on Contabo. No reconstruction. Design, themes, animations, four languages, assets, contact UI and editorial renderer are retained.

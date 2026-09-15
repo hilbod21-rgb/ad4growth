@@ -4849,17 +4849,6 @@ textarea:focus-visible {
  a.button[href*="/contact"] > span { transition: transform .3s ease; }
 }
 
-/* Native cursors: no tracking loop, overlay or animation cost. */
-@media (hover: hover) and (pointer: fine) {
-  :root { --brand-cursor: url('/images/cursors/growth.svg') 3 2; }
-  :root[data-theme="dark"] { --brand-cursor: url('/images/cursors/mouse.svg') 3 2; }
-  body { cursor: var(--brand-cursor), auto; }
-  a, button, [role="button"], .price-reaction { cursor: var(--brand-cursor), pointer; }
-  input, textarea, [contenteditable="true"] { cursor: text; }
-  input[type="checkbox"], input[type="radio"], select { cursor: var(--brand-cursor), pointer; }
-  button:disabled, [aria-disabled="true"] { cursor: not-allowed; }
-}
-
 /* Give “4 / for” its own space within the wordmark. */
 .interactive-wordmark .wordmark-letter:nth-child(3) {
   margin-inline: 0;
@@ -4875,52 +4864,53 @@ textarea:focus-visible {
   .interactive-wordmark .wordmark-letter { transition: none; }
 }
 
-/* Idle breathing opens the two words; hovering restores individual letter play. */
-.interactive-wordmark .wordmark-glyph {
-  --idle-shift: 10px;
-  animation: wordmark-open 7s ease-in-out infinite;
-  animation-play-state: paused;
-}
-.interactive-wordmark .wordmark-letter:nth-child(-n+2) .wordmark-glyph { --idle-shift: -10px; }
-.interactive-wordmark .wordmark-letter:nth-child(3) .wordmark-glyph { --idle-shift: 0px; }
-.interactive-wordmark[data-visible="true"] .wordmark-glyph { animation-play-state: running; }
-.interactive-wordmark:is(:hover, :focus-visible) .wordmark-glyph { animation: none; transform: none; }
-.interactive-wordmark:hover .wordmark-letter { transition-duration: 180ms; }
-@keyframes wordmark-open {
-  0%, 15%, 100% { transform: translateX(0); }
-  50%, 65% { transform: translateX(var(--idle-shift)); }
-}
+/* The wordmark rests until the pointer reaches it. */
+.interactive-wordmark .wordmark-glyph,
+.interactive-wordmark[data-visible="true"] .wordmark-glyph { animation: none; }
+.interactive-wordmark .wordmark-letter { transition: transform 600ms cubic-bezier(.22,.61,.36,1); }
+.interactive-wordmark:hover .wordmark-letter { transition-duration: 320ms; }
 @media (prefers-reduced-motion: reduce) {
-  .interactive-wordmark .wordmark-glyph { animation: none; }
+ .interactive-wordmark .wordmark-letter { transition: none; }
 }
 
-/* A quiet circulation layer ties the offer together without intercepting input. */
-.new-hero { position: relative; isolation: isolate; }
-.brand-circulation {
- position: absolute; inset: 0; width: 100%; height: 100%;
- pointer-events: none; z-index: -1; color: var(--forest); opacity: 0;
+/* Olive identity with warm orange interaction accents. */
+:root {
+ --paper: #fafbf9; --surface: #fff; --soft: #f0f2e8;
+ --forest: #526f1b; --olive: #6b8e23; --on-forest: #18200c;
+ --orange: #e88945; --orange-text: #b74a16; --signal: #e88945;
+ --line: #dce2da; --lime: #e9efdf;
 }
-@media (prefers-reduced-motion: no-preference) {
- .brand-circulation { animation: brand-circulation 8s ease-in-out infinite; }
- .interactive-wordmark .wordmark-glyph { animation-duration: 8s; }
- .new-hero-copy > a.button { animation: brand-action-breath 8s ease-in-out infinite; }
- .new-price-grid .price-reaction { animation: brand-price-breath 8s ease-in-out infinite; }
- .new-hero:has(a.button:hover, .price-reaction:hover) .brand-circulation { animation-play-state: paused; opacity: .16; }
- .new-hero-copy > a.button:is(:hover,:focus-visible),
- .new-price-grid .price-reaction:is(:hover,:focus-visible) { animation: none; }
+:root[data-theme="dark"] {
+ --paper: #191919; --surface: #202020; --soft: #242424;
+ --forest: #b3bd8d; --olive: #9aa96b; --on-forest: #1b2015;
+ --orange: #c9946e; --orange-text: #d0aa8d; --signal: #c9946e;
+ --line: #373737; --lime: #292b25;
 }
-@keyframes brand-circulation {
- 0%,12%,78%,100% { opacity: 0; }
- 32% { opacity: .14; }
- 46% { opacity: .06; }
- 58% { opacity: .12; }
+.text-link { border-bottom: 0; padding-bottom: 0; text-decoration: none; }
+.text-link:is(:hover,:focus-visible) { text-decoration: underline; text-underline-offset: .3em; color: var(--forest); }
+.operator-identity .text-link { display: inline-flex; gap: .4em; }
+.new-hero-copy > .kicker { max-width: 38em; line-height: 1.7; }
+.new-offer { padding-left: clamp(24px,3vw,48px); }
+@media (max-width:760px) { .new-offer { padding-left:0; } }
+
+/* Management stays readable without squeezing the table caption into a column. */
+.management-mobile-label { display: none; }
+.management-note { width: 100%; max-width: 85ch; margin: 22px 0 0; color: var(--quiet); font-size: 14px; line-height: 1.65; }
+@media (max-width: 1024px) {
+ .management-section .new-section-top { display: block; }
+ .management-section .new-section-top h2 { max-width: 22ch; font-size: clamp(28px, 4.2vw, 42px); line-height: 1.2; overflow-wrap: anywhere; margin: 20px 0; }
+ .management-section .new-section-top > p:last-child { max-width: 65ch; font-size: 16px; line-height: 1.7; }
+ .management-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+ .management-table, .management-table tbody, .management-table tr, .management-table td { display: block; width: 100%; }
+ .management-table tbody { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+ .management-table tr { padding: 24px; border: 1px solid var(--line); background: var(--surface); }
+ .management-table td { padding: 0; border: 0; font-size: 16px; line-height: 1.65; }
+ .management-table td:first-child { font-size: 21px; line-height: 1.35; margin-bottom: 22px; }
+ .management-table td:last-child { padding: 0; border: 0; margin-top: 20px; }
+ .management-mobile-label { display: block; margin-bottom: 6px; font-size: 12px; font-weight: 600; color: var(--forest); }
+ .management-ownership { grid-template-columns: 1fr; gap: 14px; }
 }
-@keyframes brand-price-breath {
- 0%,20%,70%,100% { transform: translateY(0); }
- 40% { transform: translateY(-2px); }
+@media (max-width: 600px) {
+ .management-table tbody { grid-template-columns: 1fr; gap: 16px; }
+ .management-table tr { padding: 22px; }
 }
-@keyframes brand-action-breath {
- 0%,28%,85%,100% { box-shadow: 0 0 0 0 transparent; }
- 52% { box-shadow: 0 0 0 5px color-mix(in srgb, var(--forest) 10%, transparent); }
-}
-@media (max-width: 760px) { .brand-circulation { display: none; } }

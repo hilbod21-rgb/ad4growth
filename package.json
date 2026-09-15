@@ -14,7 +14,9 @@
     "db:generate": "drizzle-kit generate",
     "build:sites": "node scripts/run-framework.mjs build",
     "start:sites": "node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js dev --config dist/server/wrangler.json --local --persist-to .wrangler/state --ip 127.0.0.1 --inspector-port 0",
-    "dev:node": "next dev --hostname 127.0.0.1 --port 3000"
+    "dev:node": "next dev --hostname 127.0.0.1 --port 3000",
+    "build:cloudflare": "vite build --config vite.cloudflare.config.ts",
+    "deploy:cloudflare": "wrangler deploy --config dist/server/wrangler.json"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

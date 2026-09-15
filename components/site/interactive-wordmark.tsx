@@ -51,14 +51,7 @@ export function InteractiveWordmark({ lang }: { lang: Locale }) {
           }
         });
       }
-      node!.querySelectorAll<HTMLElement>('.wordmark-letter').forEach((letter, index) => {
-        const x = index < 2 ? -10 : index > 2 ? 10 : 0;
-        animations.push(letter.animate([
-          { transform: 'translate(0, 0) rotate(0)' },
-          { transform: `translateX(${x}px)`, offset: .3 },
-          { transform: 'translate(0, 0) rotate(0)' },
-        ], { duration: 850, easing: 'cubic-bezier(.22,.61,.36,1)' }));
-      });
+
     }
     document.addEventListener('click', reactToPrice);
     document.addEventListener('pointerover', reactToPrice);

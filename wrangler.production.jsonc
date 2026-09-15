@@ -1,0 +1,11 @@
+{
+  "name": "ad4growth",
+  "main": "vinext/server/fetch-handler",
+  "compatibility_date": "2026-09-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "vars": {
+    "SITE_ORIGIN": "https://ad4growth.com",
+    "INQUIRY_TO": "contact@ad4growth.com"
+  }
+}
