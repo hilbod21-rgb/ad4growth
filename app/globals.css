@@ -4914,3 +4914,18 @@ textarea:focus-visible {
  .management-table tbody { grid-template-columns: 1fr; gap: 16px; }
  .management-table tr { padding: 22px; }
 }
+
+/* Native language links remain crawlable and work without JavaScript. */
+.language-menu { position: relative; }
+.language-menu summary { cursor: pointer; list-style: none; }
+.language-menu summary::-webkit-details-marker { display: none; }
+.language-menu .language-dropdown { position: absolute; right: 0; top: 100%; z-index: 60; }
+.language-menu .language-dropdown a { display: block; }
+.language-menu .language-dropdown a:hover { background: var(--muted); }
+.analytics-settings { color: inherit; font: inherit; background: none; border: 0; cursor: pointer; padding: 0; }
+.analytics-consent { position: fixed; z-index: 100; inset: auto 20px 20px auto; width: min(460px, calc(100vw - 40px)); background: var(--paper); color: var(--ink); border: 1px solid var(--line); padding: 20px; box-shadow: 0 8px 30px #0002; font-size: 14px; }
+.analytics-consent p { margin: 0 0 16px; line-height: 1.5; }
+.analytics-consent a { text-decoration: underline; }
+.analytics-consent > div { display: flex; gap: 12px; }
+.analytics-consent button { flex: 1; padding: 10px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
+.analytics-consent button:hover { border-color: currentColor; }

@@ -15,7 +15,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${business.domain}/${lang}${path}`,
       alternates: {
         languages: Object.fromEntries(
-          business.languages.filter(l => !path.startsWith("/insights/") || publishedArticles(l).some(a => `/insights/${a.slug}` === path)).map((l) => [l, `${business.domain}/${l}${path}`]),
+          [...business.languages.filter(l => !path.startsWith("/insights/") || publishedArticles(l).some(a => `/insights/${a.slug}` === path)).map((l) => [l, `${business.domain}/${l}${path}`]),
+          ...(!path.startsWith("/insights/") || publishedArticles("de").some(a => `/insights/${a.slug}` === path) ? [["x-default", `${business.domain}/de${path}`]] : [])],
         ),
       },
     })),
