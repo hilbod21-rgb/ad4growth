@@ -1,13 +1,12 @@
-import Link from "next/link";
 export default function NotFound() {
   return (
     <main className="not-found wrap">
       <p className="eyebrow">AD4GROWTH / 404</p>
       <h1>Page not found</h1>
       <p>Diese Seite ist nicht verfügbar.</p>
-      <Link className="button" href="/de">
+      <a className="button" href="/de">
         Zur Startseite ↗
-      </Link>
+      </a>
     </main>
   );
 }
