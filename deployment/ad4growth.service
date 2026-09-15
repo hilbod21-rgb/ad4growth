@@ -1,0 +1,20 @@
+[Unit]
+Description=AD4GROWTH Next.js
+After=network.target
+
+[Service]
+Type=simple
+User=ad4growth
+Group=ad4growth
+WorkingDirectory=/srv/ad4growth
+Environment=NODE_ENV=production
+EnvironmentFile=/etc/ad4growth.env
+ExecStart=/usr/bin/node /srv/ad4growth/node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port 3000
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

@@ -42,7 +42,7 @@ function Choice({
     </label>
   );
 }
-export function ContactForm({ lang }: { lang: Locale }) {
+export function ContactForm({ lang, deliveryConfigured = false }: { lang: Locale; deliveryConfigured?: boolean }) {
   const c = copy(lang),
     query = useSearchParams();
   const service = query.get("service");
@@ -174,7 +174,7 @@ export function ContactForm({ lang }: { lang: Locale }) {
       return;
     }
     setState("sending");
-    track("contact_form_submit", {
+    track("contact_form_attempt", {
       service: services.join(","),
       locale: lang,
       status: "attempt",
@@ -215,7 +215,7 @@ export function ContactForm({ lang }: { lang: Locale }) {
       }}
       className="inquiry-form"
     >
-      <p className="form-notice">
+      {!deliveryConfigured && <p className="form-notice">
         {tr(
           lang,
           "Vorschau: Der Versand ist noch nicht eingerichtet. Sie können die Anfrage ausfüllen und als Textdatei sichern; sie wird noch nicht zugestellt.",
@@ -223,7 +223,7 @@ export function ContactForm({ lang }: { lang: Locale }) {
           "Попередня версія: надсилання ще не підключено. Заповніть запит і збережіть його як текстовий файл; його ще не буде доставлено.",
           "Предварительная версия: отправка ещё не подключена. Заполните запрос и сохраните его как текстовый файл; он пока не будет доставлен.",
         )}
-      </p>
+      </p>}
       <div className="form-grid">
         {field("name", labels[0], "text", true, {
           minLength: 2,

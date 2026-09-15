@@ -120,12 +120,20 @@ export function ArticlePage({ article: a }: { article: Article }) {
     <>
       <section className="article-hero wrap">
         <p className="eyebrow">
-          INSIGHTS / {a.category.toUpperCase()} / {a.status.toUpperCase()}
+          BLOG / {a.category.toUpperCase()} / {a.status.toUpperCase()}
         </p>
         <h1>{a.title}</h1>
         <p>{a.description}</p>
         <div className="article-meta">
-          <Link href={`/${lang}/about`}>{a.author.name}</Link>
+          <Link
+            href={
+              a.author.type === "Person"
+                ? `/${lang}/#operator`
+                : `/${lang}/about`
+            }
+          >
+            {a.author.name}
+          </Link>
           <span>{a.readingMinutes} min</span>
           <span>
             {tr(lang, "Stand", "Updated", "Оновлено", "Обновлено")}{" "}
@@ -180,7 +188,15 @@ export function ArticlePage({ article: a }: { article: Article }) {
                 : tr(lang, "AUTOR", "AUTHOR", "АВТОР", "АВТОР")}
             </span>
             <h3>
-              <Link href={`/${lang}/about`}>{a.author.name}</Link>
+              <Link
+                href={
+                  a.author.type === "Person"
+                    ? `/${lang}/#operator`
+                    : `/${lang}/about`
+                }
+              >
+                {a.author.name}
+              </Link>
             </h3>
             <p>{a.author.role}</p>
           </div>

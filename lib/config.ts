@@ -2,8 +2,8 @@ export const business = {
   brand: "AD4GROWTH",
   domain: "https://ad4growth.com",
   founder: {
-    name: "Bohdan Starostenkov",
-    role: "Founder · Product & Performance",
+    name: "",
+    role: "",
     portrait: null as string | null,
     linkedin: null as string | null,
   },
@@ -22,17 +22,20 @@ export const business = {
   legal: { entity: null, address: null, taxId: null, vatStatus: null },
   languages: ["de", "en", "uk", "ru"] as const,
   launch: { active: true, clientLimit: 3 },
+  minimumMediaBudget: 500,
   pricing: {
     googleAds: {
-      normalSetup: 750,
+      normalSetup: 640,
       launchSetup: 490,
       monthly: 490,
+      normalMonthly: 640,
       mediaBudgetIncluded: false,
     },
     chatgptAds: {
-      normalSetup: 990,
+      normalSetup: 900,
       launchSetup: 690,
       monthly: 590,
+      normalMonthly: 770,
       mediaBudgetIncluded: false,
     },
   },
@@ -61,3 +64,5 @@ export const setupPrice = (key: "googleAds" | "chatgptAds") =>
   business.launch.active
     ? business.pricing[key].launchSetup
     : business.pricing[key].normalSetup;
+
+export const monthlyPrice = (key: "googleAds" | "chatgptAds") => business.launch.active ? business.pricing[key].monthly : business.pricing[key].normalMonthly;

@@ -110,7 +110,7 @@ export function LegalPage({
               "Контактное лицо",
             )}
           </dt>
-          <dd>{business.founder.name}</dd>
+          <dd>{business.legal.entity || "[Name / legal entity]"}</dd>
           {tr(
             lang,
             [

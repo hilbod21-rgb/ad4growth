@@ -1,40 +1,11 @@
+import { publishedArticles } from "@/lib/content/articles";
 import Link from "next/link";
+import { InteractiveWordmark } from "./interactive-wordmark";
 import { Fragment } from "react";
 import { scopeCopy } from "@/lib/content/scope";
-import { business, euro, setupPrice, type Locale } from "@/lib/config";
+import { business, euro, setupPrice, monthlyPrice, type Locale } from "@/lib/config";
 import { copy, tr } from "@/lib/content/copy";
 import { TrackedLink, Languages } from "./navigation";
-export function Services({ lang }: { lang: Locale }) {
-  const c = copy(lang);
-  return (
-    <section className="section wrap">
-      <div className="section-heading">
-        <p className="eyebrow">04 / TWO PRODUCTS</p>
-        <h2>{c.servicesTitle}</h2>
-      </div>
-      <div className="services-grid">
-        {business.services.map((s, i) => (
-          <article key={s.id}>
-            <div className="service-heading">
-              <span className="eyebrow">{s.number} /</span>
-              <h3>{s.name}</h3>
-              <span aria-hidden="true">↗</span>
-            </div>
-            <p>{i ? c.chatShort : c.googleShort}</p>
-            <TrackedLink
-              event="service_select"
-              parameters={{ service: s.id, locale: lang }}
-              href={`/${lang}/${s.slug}`}
-              className="text-link"
-            >
-              {c.explore} ↗
-            </TrackedLink>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
 export function Pricing({
   lang,
   service,
@@ -49,7 +20,7 @@ export function Pricing({
   return (
     <section className="section wrap pricing" id="pricing">
       <div className="section-heading">
-        <p className="eyebrow">05 / THE INVESTMENT</p>
+        <p className="eyebrow">PRICING / LEISTUNGEN</p>
         <h2 className="pre-line">{c.pricingTitle}</h2>
         <p>{c.pricingBody}</p>
       </div>
@@ -63,14 +34,11 @@ export function Pricing({
               </div>
               <div>
                 <span className="label">{c.oneTime}</span>
-                {business.launch.active && (
-                  <s>{euro(business.pricing[s.key].normalSetup)}</s>
-                )}
-                <strong>{euro(setupPrice(s.key))}</strong>
+                <strong><button type="button" className="price-reaction">{euro(setupPrice(s.key))}</button></strong><small className="net-price-label">netto</small>
               </div>
               <div>
                 <span className="label">MANAGEMENT</span>
-                <strong>{euro(business.pricing[s.key].monthly)}</strong>
+                <strong><button type="button" className="price-reaction">{euro(monthlyPrice(s.key))}</button></strong><small className="net-price-label">netto</small>
                 <span className="price-unit">{c.month}</span>
               </div>
               <TrackedLink
@@ -121,96 +89,18 @@ export function Pricing({
     </section>
   );
 }
-export function Fit({ lang }: { lang: Locale }) {
-  const c = copy(lang);
-  return (
-    <section className="section wrap fit">
-      <div>
-        <p className="eyebrow">06 / THE RIGHT FIT</p>
-        <h2 className="pre-line">{c.fitTitle}</h2>
-      </div>
-      <div>
-        <h3>{c.goodFit}</h3>
-        <ul>
-          {c.fitYes.map((x) => (
-            <li key={x}>
-              <span>↗</span>
-              {x}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h3>{c.notYet}</h3>
-        <ul>
-          {c.fitNo.map((x) => (
-            <li key={x}>
-              <span>—</span>
-              {x}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  );
-}
-export function Founder({
-  lang,
-  full = false,
-}: {
-  lang: Locale;
-  full?: boolean;
-}) {
-  const c = copy(lang);
-  return (
-    <section className={`section wrap founder ${full ? "full-founder" : ""}`}>
-      <div>
-        <p className="eyebrow">08 / THE OPERATOR</p>
-        <h2 className="pre-line">{c.founderTitle}</h2>
-      </div>
-      <div className="founder-profile">
-        {business.founder.portrait && (
-          <img
-            src={business.founder.portrait}
-            width="160"
-            height="200"
-            alt={business.founder.name}
-            loading="lazy"
-          />
-        )}
-        <span className="founder-monogram" aria-hidden="true">
-          BS<span>↗</span>
-        </span>
-        <div>
-          <h3>{business.founder.name}</h3>
-          <p className="eyebrow">{business.founder.role}</p>
-        </div>
-      </div>
-      <div>
-        <p>{c.founderBody}</p>
-        {!full && (
-          <Link className="text-link" href={`/${lang}/about`}>
-            {c.aboutLink} ↗
-          </Link>
-        )}
-      </div>
-    </section>
-  );
-}
 export function Footer({ lang, path }: { lang: Locale; path: string }) {
   const c = copy(lang);
   return (
     <footer className="footer wrap">
       <div className="footer-top">
         <div>
-          <Link href={`/${lang}`} className="logo">
-            AD<span>4</span>GROWTH
-          </Link>
+          <InteractiveWordmark lang={lang} />
           <p>Advertising for Growth.</p>
         </div>
         <nav aria-label="Footer">
           {["google-ads", "chatgpt-ads", "insights", "about", "contact"].map(
-            (s, i) => (
+            (s, i) => s === "insights" && !publishedArticles(lang).length ? null : (
               <Link key={s} href={`/${lang}/${s}`}>
                 {i < 4 ? c.nav[i] : c.contact}
               </Link>
@@ -248,24 +138,6 @@ export function Footer({ lang, path }: { lang: Locale; path: string }) {
     </footer>
   );
 }
-export function ContactIntro({ lang }: { lang: Locale }) {
-  const c = copy(lang);
-  return (
-    <div className="contact-intro">
-      <p className="eyebrow">07 / YOUR NEXT MOVE</p>
-      <h2 className="pre-line">{c.contactTitle}</h2>
-      <p>{c.contactBody}</p>
-      <div className="contact-signature">
-        <span className="mini-mark">4</span>
-        <span>
-          AD4GROWTH
-          <br />
-          <small>Paid Acquisition · Measurement · Optimization</small>
-        </span>
-      </div>
-    </div>
-  );
-}
 export function Breadcrumb({ lang, title }: { lang: Locale; title: string }) {
   return (
     <nav className="breadcrumb wrap" aria-label="Breadcrumb">
@@ -288,10 +160,10 @@ export function BottomCTA({
       <h2>
         {tr(
           lang,
-          "Vom Plan zum nächsten Schritt.",
-          "From a plan to the next step.",
-          "Від плану до наступного кроку.",
-          "От плана к следующему шагу.",
+          "Vom Plan zum nächsten Schritt",
+          "From a plan to the next step",
+          "Від плану до наступного кроку",
+          "От плана к следующему шагу",
         )}
       </h2>
       <Link

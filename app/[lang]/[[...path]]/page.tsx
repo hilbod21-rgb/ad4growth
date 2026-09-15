@@ -1,30 +1,21 @@
+import { GoogleService } from "@/components/site/google-service";
+import { ChatGPTService } from "@/components/site/chatgpt-service";
+import { operator } from "@/lib/content/operator";
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { business, isLocale, type Locale } from "@/lib/config";
 import { copy, tr } from "@/lib/content/copy";
-import { serviceCopy } from "@/lib/content/services";
 import {
-  demoArticle,
-  demoSlug,
   publishedArticles,
   findArticle,
 } from "@/lib/content/articles";
 import { Header, PageEvents } from "@/components/site/navigation";
-import { Hero } from "@/components/site/hero";
-import {
-  Services,
-  Pricing,
-  Fit,
-  Footer,
-  ContactIntro,
-  Breadcrumb,
-  BottomCTA,
-} from "@/components/site/sections";
-import { PerformanceLab } from "@/components/site/performance-lab";
+import { Home } from "@/components/site/home";
+import { Footer, Breadcrumb, BottomCTA } from "@/components/site/sections";
+
 import { ContactForm } from "@/components/site/contact-form";
-import { FAQ } from "@/components/site/faq";
 import { ArticlePage } from "@/components/site/article";
 import { LegalPage } from "@/components/site/legal";
 type Props = { params: Promise<{ lang: string; path?: string[] }> };
@@ -33,14 +24,13 @@ const routes = [
   "google-ads",
   "chatgpt-ads",
   "insights",
-  `insights/${demoSlug}`,
   "about",
   "contact",
   "impressum",
   "datenschutz",
 ];
 const validRoute = (lang: Locale, path: string) =>
-  routes.includes(path) ||
+  (routes.includes(path) && (path !== "insights" || publishedArticles(lang).length > 0)) ||
   (path.startsWith("insights/") && !!findArticle(lang, path.slice(9)));
 function pageTitle(lang: Locale, path: string) {
   const c = copy(lang);
@@ -63,7 +53,7 @@ function pageTitle(lang: Locale, path: string) {
             : path === "datenschutz"
               ? c.privacy
               : path === "insights"
-                ? "Insights"
+                ? "Blog"
                 : path === "google-ads"
                   ? "Google Ads"
                   : "ChatGPT Ads";
@@ -103,11 +93,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: url,
       languages: Object.fromEntries([
-        ...business.languages.map((l) => [
+        ...business.languages.filter(l => !p.startsWith("insights/") || !!findArticle(l, p.slice(9))).map((l) => [
           l,
           business.domain + `/${l}` + suffix,
         ]),
-        ["x-default", business.domain + "/de" + suffix],
+        ...(!p.startsWith("insights/") || findArticle("de", p.slice(9)) ? [["x-default", business.domain + "/de" + suffix]] : []),
       ]),
     },
     openGraph: {
@@ -151,9 +141,21 @@ export default async function Page({ params }: Props) {
       name: business.brand,
       url: business.domain,
       description: "Paid acquisition, measurement and optimization",
+      member: { "@id": business.domain + "/#operator" },
     },
     { "@type": "WebPage", name: title, url, inLanguage: lang },
   ];
+  structured.push({
+    "@type": "Person",
+    "@id": business.domain + "/#operator",
+    name: operator.name,
+    jobTitle: operator.role,
+    homeLocation: { "@type": "Place", name: "Dresden" },
+    url: business.domain + `/${lang}/#operator`,
+    image: business.domain + operator.portrait,
+    sameAs: [operator.linkedin],
+    worksFor: { "@id": business.domain + "/#organization" },
+  });
   if (slug === "google-ads" || slug === "chatgpt-ads")
     structured.push({
       "@type": "Service",
@@ -174,7 +176,11 @@ export default async function Page({ params }: Props) {
         author: {
           "@type": a.author.type,
           name: a.author.name,
-          url: business.domain + `/${lang}/about`,
+          url:
+            business.domain +
+            (a.author.type === "Person"
+              ? `/${lang}/#operator`
+              : `/${lang}/about`),
         },
         mainEntityOfPage: url,
       });
@@ -195,7 +201,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       <PageEvents lang={lang} path={suffix} />
-      <Header lang={lang} path={suffix} />
+      <Header lang={lang} path={suffix} blogEnabled={publishedArticles(lang).length > 0} />
       <main id="main">
         <script
           type="application/ld+json"
@@ -208,20 +214,7 @@ export default async function Page({ params }: Props) {
         />
         {slug && <Breadcrumb lang={lang} title={title} />}
         {slug === "" ? (
-          <>
-            <Hero lang={lang} />
-            <PerformanceLab lang={lang} />
-            <Services lang={lang} />
-            <Pricing lang={lang} />
-            <Fit lang={lang} />
-            <section className="section wrap contact-section" id="contact">
-              <ContactIntro lang={lang} />
-              <Suspense>
-                <ContactForm lang={lang} />
-              </Suspense>
-            </section>
-            <FAQ lang={lang} />
-          </>
+          <Home lang={lang} />
         ) : slug === "google-ads" || slug === "chatgpt-ads" ? (
           <ServicePage lang={lang} chat={slug === "chatgpt-ads"} />
         ) : slug === "about" ? (
@@ -256,10 +249,10 @@ export default async function Page({ params }: Props) {
               <p>
                 {tr(
                   lang,
-                  "AD4GROWTH verbindet bezahlte Akquisition mit einer einfachen Disziplin: erst verstehen, dann testen, dann anhand der Daten entscheiden.",
-                  "AD4GROWTH connects paid acquisition with a simple discipline: understand first, then test, then decide using the evidence.",
-                  "AD4GROWTH поєднує платне залучення з простою дисципліною: спочатку зрозуміти, потім перевірити, потім вирішувати за даними.",
-                  "AD4GROWTH соединяет платное привлечение с простой дисциплиной: сначала понять, затем проверить, затем решать по данным.",
+                  "AD4GROWTH steht für Suchmaschinenwerbung (SEA) und Paid Acquisition mit Google Ads und ChatGPT Ads. Die Zusammenarbeit erfolgt online, mit direktem Ansprechpartner in Dresden: vom Kampagnenaufbau bis zur laufenden Betreuung.",
+                  "AD4GROWTH focuses on paid search (SEA) and paid acquisition through Google Ads and ChatGPT Ads. Work together online with a direct contact in Dresden, from campaign setup to ongoing management.",
+                  "AD4GROWTH — це пошукова реклама (SEA) та платне залучення через Google Ads і ChatGPT Ads. Співпрацюємо онлайн, з прямим контактом у Дрездені: від налаштування кампаній до постійного управління.",
+                  "AD4GROWTH — это поисковая реклама (SEA) и платное привлечение через Google Ads и ChatGPT Ads. Работаем онлайн, с прямым контактом в Дрездене: от настройки кампаний до постоянного управления.",
                 )}
               </p>
             </section>
@@ -346,7 +339,7 @@ export default async function Page({ params }: Props) {
               </div>
             </div>
             <Suspense>
-              <ContactForm lang={lang} />
+              <ContactForm lang={lang} deliveryConfigured={!!(process.env.RESEND_API_KEY && process.env.INQUIRY_FROM && process.env.INQUIRY_TO)} />
             </Suspense>
           </section>
         ) : slug === "insights" ? (
@@ -362,75 +355,15 @@ export default async function Page({ params }: Props) {
   );
 }
 function ServicePage({ lang, chat }: { lang: Locale; chat: boolean }) {
-  const c = copy(lang),
-    s = serviceCopy(lang, chat),
-    name = chat ? "ChatGPT Ads" : "Google Ads",
-    id = chat ? "chatgpt_ads" : "google_ads";
-  return (
-    <>
-      <section className="page-hero wrap">
-        <p className="eyebrow">
-          {chat ? "02" : "01"} / {name.toUpperCase()}
-        </p>
-        <h1 className="pre-line">{s.title}</h1>
-        <p>{s.intro}</p>
-        <Link href={`/${lang}/contact?service=${id}`} className="button">
-          {c.serviceCta(name)}
-          <span>↗</span>
-        </Link>
-      </section>
-      <div className="service-sequence wrap">
-        {s.steps.map((x, i) => (
-          <span key={x}>
-            {x}
-            {i < s.steps.length - 1 && <b>→</b>}
-          </span>
-        ))}
-      </div>
-      {chat && (
-        <aside className="availability-note wrap">
-          <span className="eyebrow">ACCESS FIRST</span>
-          <p>
-            {c.availability}{" "}
-            {tr(
-              lang,
-              "Anfrage bedeutet keine Zusage eines sofortigen Starts. Umfang und Umsetzung werden vor Beauftragung bestätigt.",
-              "An inquiry does not imply an immediate launch. Scope and execution are confirmed before commissioning.",
-              "Запит не означає негайного запуску. Обсяг і реалізацію підтверджуємо до замовлення.",
-              "Запрос не означает немедленного запуска. Объём и реализацию подтверждаем до заказа.",
-            )}
-          </p>
-        </aside>
-      )}
-      <section className="section wrap service-detail">
-        <div>
-          <p className="eyebrow">THE APPROACH</p>
-          <h2>{s.section}</h2>
-          <p>{s.body}</p>
-        </div>
-        <div className="work-list">
-          {s.work.map(([title, body], i) => (
-            <article key={title}>
-              <span className="eyebrow">0{i + 1}</span>
-              <h3>{title}</h3>
-              <p>{body}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-      <Pricing lang={lang} service={chat ? "chatgptAds" : "googleAds"} />
-      <BottomCTA lang={lang} service={id} />
-    </>
-  );
+  return chat ? <ChatGPTService lang={lang} /> : <GoogleService lang={lang} />;
 }
 function Insights({ lang }: { lang: Locale }) {
-  const demo = demoArticle(lang),
-    articles = publishedArticles(lang);
+  const articles = publishedArticles(lang);
   return (
     <>
       <section className="page-hero wrap insights-hero">
-        <p className="eyebrow">THE PERFORMANCE JOURNAL</p>
-        <h1>Insights</h1>
+        <p className="eyebrow">SEA / GOOGLE ADS / CHATGPT ADS</p>
+        <h1>Blog</h1>
         <p>
           {tr(
             lang,
@@ -442,17 +375,6 @@ function Insights({ lang }: { lang: Locale }) {
         </p>
       </section>
       <section className="section wrap insights-list">
-        {articles.length === 0 && (
-          <p className="editorial-empty">
-            {tr(
-              lang,
-              "Noch keine redaktionell freigegebenen Artikel. Die folgende Vorlage zeigt das Format für kommende Beiträge.",
-              "No editorially approved articles yet. The template below demonstrates the format for future pieces.",
-              "Редакційно схвалених статей поки немає. Шаблон нижче показує формат майбутніх матеріалів.",
-              "Редакционно одобренных статей пока нет. Шаблон ниже показывает формат будущих материалов.",
-            )}
-          </p>
-        )}
         {articles.map((a) => (
           <Link
             className="article-list-item"
@@ -464,25 +386,6 @@ function Insights({ lang }: { lang: Locale }) {
             <span className="article-read">{a.readingMinutes} min ↗</span>
           </Link>
         ))}
-        <Link
-          className="article-list-item"
-          href={`/${lang}/insights/${demo.slug}`}
-        >
-          <span className="eyebrow">DEMO / MEASUREMENT</span>
-          <h2>{demo.title}</h2>
-          <span className="article-read">
-            {demo.readingMinutes} min <b>↗</b>
-          </span>
-        </Link>
-        <p className="subtle">
-          {tr(
-            lang,
-            "Lehrbeispiel, kein Kundenfall. Nicht für Suchmaschinen indexiert.",
-            "Educational example, not a client case. Excluded from search indexing.",
-            "Навчальний приклад, не кейс клієнта. Виключено з пошукової індексації.",
-            "Учебный пример, не кейс клиента. Исключено из поисковой индексации.",
-          )}
-        </p>
       </section>
       <BottomCTA lang={lang} />
     </>

@@ -26,10 +26,3 @@ export class SubmissionUnavailable extends Error {}
 export interface InquiryAdapter {
   submit(inquiry: Inquiry): Promise<{ reference: string }>;
 }
-// Replace this adapter with an authenticated mail/CRM provider on the server.
-// No personal data is logged or persisted by the unconfigured adapter.
-export const inquiryAdapter: InquiryAdapter = {
-  async submit() {
-    throw new SubmissionUnavailable("Delivery adapter is not configured");
-  },
-};

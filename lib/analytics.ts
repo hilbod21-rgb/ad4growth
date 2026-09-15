@@ -1,4 +1,5 @@
 export type AnalyticsEvent =
+  | "cta_click"
   | "page_view"
   | "language_change"
   | "hero_cta_click"
@@ -7,6 +8,7 @@ export type AnalyticsEvent =
   | "chatgpt_ads_select"
   | "pricing_cta_click"
   | "metric_open"
+  | "contact_form_attempt"
   | "contact_form_start"
   | "contact_form_submit"
   | "article_view"
@@ -29,4 +31,12 @@ export function track(
   parameters: Record<string, string | number | boolean> = {},
 ) {
   adapter?.(event, parameters);
+}
+
+// Call only after analytics consent; no tags or requests are loaded automatically.
+export function enableDataLayerAnalytics() {
+  configureAnalytics((event, parameters) => {
+    const browser = window as Window & { dataLayer?: unknown[] };
+    (browser.dataLayer ||= []).push({ event, ...parameters });
+  });
 }

@@ -1,4 +1,5 @@
 import { type Locale, business } from "@/lib/config";
+import { operator } from "./operator";
 import { tr } from "./copy";
 export type ArticleBlock =
   | {
@@ -27,7 +28,7 @@ export interface Article {
   status: "draft" | "demo" | "published";
   title: string;
   description: string;
-  author: typeof business.editorial;
+  author: typeof business.editorial | typeof operator;
   publishedAt: string | null;
   updatedAt: string;
   category: string;
@@ -249,9 +250,7 @@ export function publishedArticles(lang: Locale): Article[] {
   );
 }
 export function findArticle(lang: Locale, slug: string): Article | undefined {
-  return slug === demoSlug
-    ? demoArticle(lang)
-    : publishedArticles(lang).find((a) => a.slug === slug);
+  return publishedArticles(lang).find((a) => a.slug === slug);
 }
 export interface CaseStudy {
   slug: string;

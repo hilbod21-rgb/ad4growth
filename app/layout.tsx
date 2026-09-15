@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "AD4GROWTH — Performance Advertising",
   description:
     "Google Ads und ChatGPT Ads. Paid Acquisition, Measurement und Optimization.",
+  verification: { google: process.env.GOOGLE_SITE_VERIFICATION || undefined },
   icons: { icon: "/favicon.svg" },
 };
 export default async function RootLayout({
@@ -14,7 +15,8 @@ export default async function RootLayout({
 }) {
   const lang = (await headers()).get("x-site-locale") || "de";
   return (
-    <html lang={lang}>
+    <html lang={lang} suppressHydrationWarning>
+      <head><script dangerouslySetInnerHTML={{__html:"try{document.documentElement.dataset.theme=localStorage.getItem('ad4growth-theme')==='dark'?'dark':'light'}catch(e){}"}} /></head>
       <body>{children}</body>
     </html>
   );
