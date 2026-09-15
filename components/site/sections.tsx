@@ -1,3 +1,4 @@
+import { AnalyticsConsent } from "./analytics-consent";
 import { publishedArticles } from "@/lib/content/articles";
 import { InteractiveWordmark } from "./interactive-wordmark";
 import { Fragment } from "react";
@@ -107,14 +108,6 @@ export function Footer({ lang, path }: { lang: Locale; path: string }) {
           )}
         </nav>
         <div>
-          {business.contact.email && (
-            <TrackedLink
-              event="email_click"
-              href={`mailto:${business.contact.email}`}
-            >
-              E-Mail ↗
-            </TrackedLink>
-          )}
           {business.founder.linkedin && (
             <TrackedLink
               event="linkedin_click"
@@ -127,6 +120,7 @@ export function Footer({ lang, path }: { lang: Locale; path: string }) {
         </div>
       </div>
       <div className="footer-bottom">
+        <AnalyticsConsent lang={lang} />
         <span>© {new Date().getFullYear()} AD4GROWTH</span>
         <span>PAID ACQUISITION / MEASUREMENT / OPTIMIZATION</span>
         <div>

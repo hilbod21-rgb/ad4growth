@@ -1,10 +1,4 @@
 "use client";
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
 import { useEffect, useSyncExternalStore } from "react";
 import { InteractiveWordmark } from "./interactive-wordmark";
 import { Button } from "@/components/ui/button";
@@ -52,37 +46,20 @@ export function PageEvents({ lang, path }: { lang: Locale; path: string }) {
 }
 export function Languages({ lang, path }: { lang: Locale; path: string }) {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger
-        className="language-trigger"
-        aria-label="Choose language"
-      >
-        {lang.toUpperCase()} <span>⌄</span>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="language-dropdown">
+    <details className="language-menu">
+      <summary className="language-trigger" aria-label="Choose language">
+        {lang.toUpperCase()} <span aria-hidden="true">⌄</span>
+      </summary>
+      <nav className="language-dropdown" aria-label="Languages">
         {business.languages.map((l) => (
-          <DropdownMenuItem asChild key={l}>
-            <a
-              href={`/${l}${path}`}
-              aria-current={l === lang ? "page" : undefined}
-              onClick={() =>
-                track("language_change", { from: lang, to: l, path })
-              }
-            >
-              {
-                {
-                  de: "Deutsch",
-                  en: "English",
-                  uk: "Українська",
-                  ru: "Русский",
-                }[l]
-              }{" "}
-              {l === lang ? "✓" : ""}
-            </a>
-          </DropdownMenuItem>
+          <a key={l} href={`/${l}${path}`} hrefLang={l} lang={l}
+            aria-current={l === lang ? "page" : undefined}
+            onClick={() => track("language_change", { from: lang, to: l, path })}>
+            {{ de: "Deutsch", en: "English", uk: "Українська", ru: "Русский" }[l]} {l === lang ? "✓" : ""}
+          </a>
         ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </nav>
+    </details>
   );
 }
 
