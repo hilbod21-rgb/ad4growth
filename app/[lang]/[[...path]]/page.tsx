@@ -3,7 +3,6 @@ import { ChatGPTService } from "@/components/site/chatgpt-service";
 import { operator } from "@/lib/content/operator";
 import { Suspense } from "react";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { business, isLocale, type Locale } from "@/lib/config";
 import { copy, tr } from "@/lib/content/copy";
@@ -377,7 +376,7 @@ function Insights({ lang }: { lang: Locale }) {
       </section>
       <section className="section wrap insights-list">
         {articles.map((a) => (
-          <Link
+          <a
             className="article-list-item"
             key={a.slug}
             href={`/${lang}/insights/${a.slug}`}
@@ -385,7 +384,7 @@ function Insights({ lang }: { lang: Locale }) {
             <span className="eyebrow">{a.category}</span>
             <h2>{a.title}</h2>
             <span className="article-read">{a.readingMinutes} min ↗</span>
-          </Link>
+          </a>
         ))}
       </section>
       <BottomCTA lang={lang} />
