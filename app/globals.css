@@ -4965,3 +4965,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .contact-email .text-link { display: inline-flex; align-items: center; gap: 8px; }
 @media (prefers-reduced-motion: reduce) { .language-trigger > svg, .details-chevron { transition: none; } }
 .standalone-contact > div > p:not(.eyebrow) { color: var(--quiet); }
+/* Explicit foregrounds also repaint correctly when Safari switches themes. */
+.interactive-wordmark .wordmark-glyph, .theme-toggle svg { color: var(--ink); }
+.interactive-wordmark:is(:hover,:focus-visible) .wordmark-glyph { color: var(--forest); }
