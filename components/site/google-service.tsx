@@ -1,3 +1,4 @@
+import { Search, ArrowUpRight, ArrowDown } from "lucide-react";
 import { type Locale } from "@/lib/config";
 import { copy, tr } from "@/lib/content/copy";
 import { serviceCopy } from "@/lib/content/services";
@@ -30,7 +31,7 @@ export function GoogleService({ lang }: { lang: Locale }) {
             )}
           </p>
           <a className="button" href={`/${lang}/contact?service=google_ads`}>
-            {c.serviceCta("Google Ads")} ↗
+            {c.serviceCta("Google Ads")} <ArrowUpRight className="ui-icon" aria-hidden="true" strokeWidth={1.5} />
           </a>
         </div>
         <aside className="service-commercial-aside">
@@ -47,7 +48,7 @@ export function GoogleService({ lang }: { lang: Locale }) {
               "Що входить?",
               "Что входит?",
             )}{" "}
-            ↓
+            <ArrowDown className="ui-icon" aria-hidden="true" strokeWidth={1.5} />
           </a>
         </aside>
       </section>
@@ -75,7 +76,7 @@ export function GoogleService({ lang }: { lang: Locale }) {
             )}
           </p>
           <p className="search-query">
-            ⌕{" "}
+            <Search className="ui-icon" aria-hidden="true" strokeWidth={1.5} />{" "}
             {tr(
               lang,
               "Steuerberatung für mein Unternehmen",

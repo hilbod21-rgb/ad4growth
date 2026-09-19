@@ -1,4 +1,5 @@
 "use client";
+import { ArrowUpRight } from "lucide-react";
 import { useEffect, useSyncExternalStore } from "react";
 import { InteractiveWordmark } from "./interactive-wordmark";
 import { Button } from "@/components/ui/button";
@@ -55,7 +56,7 @@ export function Languages({ lang, path }: { lang: Locale; path: string }) {
           <a key={l} href={`/${l}${path}`} hrefLang={l} lang={l}
             aria-current={l === lang ? "page" : undefined}
             onClick={() => track("language_change", { from: lang, to: l, path })}>
-            {{ de: "Deutsch", en: "English", uk: "Українська", ru: "Русский" }[l]} {l === lang ? "✓" : ""}
+            {{ de: "Deutsch", en: "English", uk: "Українська", ru: "Русский" }[l]}
           </a>
         ))}
       </nav>
@@ -138,7 +139,7 @@ export function Header({ lang, path, blogEnabled = false }: { lang: Locale; path
           </a>
         </nav>
         <a className="header-cta" href={`/${lang}/contact`}>
-          {c.cta} ↗
+          {c.cta} <ArrowUpRight className="ui-icon" aria-hidden="true" strokeWidth={1.5} />
         </a>
         <ThemeToggle lang={lang} />
         <Languages lang={lang} path={path} />

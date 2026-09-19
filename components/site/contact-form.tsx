@@ -1,4 +1,5 @@
 "use client";
+import { ArrowUpRight, ChevronDown, ArrowDown } from "lucide-react";
 import { useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { Locale } from "@/lib/config";
@@ -278,7 +279,7 @@ export function ContactForm({ lang, deliveryConfigured = false }: { lang: Locale
           ))}
         </fieldset>
       </div>
-      <details className="form-more">
+      <details className="form-more" open>
         <summary>
           {tr(
             lang,
@@ -287,7 +288,7 @@ export function ContactForm({ lang, deliveryConfigured = false }: { lang: Locale
             "Додати деталі проєкту",
             "Добавить детали проекта",
           )}{" "}
-          <span>+</span>
+          <ChevronDown className="ui-icon details-chevron" aria-hidden="true" strokeWidth={1.5} />
         </summary>
         <div className="form-grid">
           {field("offer", labels[6])}
@@ -397,7 +398,7 @@ export function ContactForm({ lang, deliveryConfigured = false }: { lang: Locale
                 "Надіслати запит",
                 "Отправить запрос",
               )}{" "}
-          <span>↗</span>
+          <span><ArrowUpRight className="ui-icon" aria-hidden="true" strokeWidth={1.5} /></span>
         </button>
         <button
           type="button"
@@ -425,11 +426,11 @@ export function ContactForm({ lang, deliveryConfigured = false }: { lang: Locale
         >
           {tr(
             lang,
-            "Als Text sichern ↓",
-            "Save as text ↓",
-            "Зберегти текст ↓",
-            "Сохранить текст ↓",
-          )}
+            "Als Text sichern",
+            "Save as text",
+            "Зберегти текст",
+            "Сохранить текст",
+          )} <ArrowDown className="ui-icon" aria-hidden="true" strokeWidth={1.5} />
         </button>
       </div>
       <div

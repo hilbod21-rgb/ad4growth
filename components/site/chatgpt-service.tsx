@@ -1,3 +1,4 @@
+import { ArrowUpRight, ArrowDown } from "lucide-react";
 import { ServicePrice, ServiceScope } from "./service-commercial";
 import { type Locale } from "@/lib/config";
 import { copy, tr } from "@/lib/content/copy";
@@ -35,7 +36,7 @@ export function ChatGPTService({ lang }: { lang: Locale }) {
             className="button"
             href={`/${lang}/contact?service=chatgpt_ads`}
           >
-            {c.serviceCta("ChatGPT Ads")} <span>↗</span>
+            {c.serviceCta("ChatGPT Ads")} <span><ArrowUpRight className="ui-icon" aria-hidden="true" strokeWidth={1.5} /></span>
           </a>
           <a className="chat-price-link" href="#scope">
             {tr(
@@ -45,7 +46,7 @@ export function ChatGPTService({ lang }: { lang: Locale }) {
               "Ціни та склад робіт",
               "Цены и состав работ",
             )}{" "}
-            ↓
+            <ArrowDown className="ui-icon" aria-hidden="true" strokeWidth={1.5} />
           </a>
         </div>
         <aside className="conversation-brief">

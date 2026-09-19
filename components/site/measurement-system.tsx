@@ -1,4 +1,5 @@
 "use client";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { type Locale } from "@/lib/config";
 import { tr } from "@/lib/content/copy";
@@ -60,7 +61,7 @@ export function MeasurementSystem({ lang }: { lang: Locale }) {
                 className={links[metric].includes(i) ? "is-related" : ""}
               >
                 <span>{s}</span>
-                {i < 5 && <b aria-hidden="true">→</b>}
+                {i < 5 && <b aria-hidden="true"><ArrowRight className="ui-icon" aria-hidden="true" strokeWidth={1.5} /></b>}
               </li>
             ))}
           </ol>
@@ -171,7 +172,7 @@ export function MeasurementSystem({ lang }: { lang: Locale }) {
                       {row[0]}
                       <small>{row[1]}</small>
                     </span>
-                    <span aria-hidden="true">↗</span>
+                    <span aria-hidden="true"><ArrowUpRight className="ui-icon" aria-hidden="true" strokeWidth={1.5} /></span>
                   </TabsTrigger>
                 ))}
               </TabsList>

@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { type Locale } from "@/lib/config";
 import { operator, operatorCopy } from "@/lib/content/operator";
@@ -33,7 +34,7 @@ export function Operator({ lang }: { lang: Locale }) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            LinkedIn ↗
+            LinkedIn <ArrowUpRight className="ui-icon" aria-hidden="true" strokeWidth={1.5} />
           </a>
         </div>
         <p className="operator-description">{operatorCopy(lang)}</p>

@@ -1,3 +1,4 @@
+import { Search, ArrowUpRight, ArrowDownLeft, ArrowDown } from "lucide-react";
 import { Operator } from "./operator";
 import { business, euro, setupPrice, monthlyPrice, type Locale } from "@/lib/config";
 import { copy, tr } from "@/lib/content/copy";
@@ -48,7 +49,7 @@ export function Home({ lang }: { lang: Locale }) {
                 "Обговорити ваш проєкт",
                 "Обсудить ваш проект",
               )}{" "}
-              <span>↗</span>
+              <span><ArrowUpRight className="ui-icon" aria-hidden="true" strokeWidth={1.5} /></span>
             </TrackedLink>
             <a className="hero-secondary" href="#channels">
               {tr(
@@ -58,7 +59,7 @@ export function Home({ lang }: { lang: Locale }) {
                 "Як працюють два канали",
                 "Как работают два канала",
               )}{" "}
-              ↓
+              <ArrowDown className="ui-icon" aria-hidden="true" strokeWidth={1.5} />
             </a>
           </div>
           <aside className="new-offer">
@@ -82,14 +83,14 @@ export function Home({ lang }: { lang: Locale }) {
                   "Сравнить каналы",
                 )}
               >
-                ↙
+                <ArrowDownLeft className="ui-icon" aria-hidden="true" strokeWidth={1.5} />
               </a>
             </div>
             {business.services.map((s, i) => (
               <div className="new-product-price" key={s.id}>
                 <div className="product-price-title">
                   <span>{s.number}</span>
-                  <a href={`/${lang}/${s.slug}`}>{s.name} ↗</a>
+                  <a href={`/${lang}/${s.slug}`}>{s.name} <ArrowUpRight className="ui-icon" aria-hidden="true" strokeWidth={1.5} /></a>
                 </div>
                 <p>{i ? "Conversational intent" : "Search intent"}</p>
                 <div className="new-price-grid">
@@ -222,7 +223,7 @@ export function Home({ lang }: { lang: Locale }) {
                 )}
               </small>
               <span>
-                ⌕{" "}
+                <Search className="ui-icon" aria-hidden="true" strokeWidth={1.5} />{" "}
                 {tr(
                   lang,
                   "Steuerberatung für mein Unternehmen",
@@ -242,7 +243,7 @@ export function Home({ lang }: { lang: Locale }) {
               )}
             </p>
             <a className="text-link" href={`/${lang}/google-ads`}>
-              {c.explore} ↗
+              {c.explore} <ArrowUpRight className="ui-icon" aria-hidden="true" strokeWidth={1.5} />
             </a>
           </article>
           <article className="conversation-story">
@@ -298,10 +299,10 @@ export function Home({ lang }: { lang: Locale }) {
               )}
             </p>
             <a className="text-link" href={`/${lang}/chatgpt-ads`}>
-              {c.explore} ↗
+              {c.explore} <ArrowUpRight className="ui-icon" aria-hidden="true" strokeWidth={1.5} />
             </a>
             <p className="platform-footnote">
-              {c.availability} <a href="https://ads.openai.com/">OpenAI ↗</a>
+              {c.availability} <a href="https://ads.openai.com/">OpenAI <ArrowUpRight className="ui-icon" aria-hidden="true" strokeWidth={1.5} /></a>
             </p>
           </article>
         </div>
@@ -330,7 +331,7 @@ export function Home({ lang }: { lang: Locale }) {
           </p>
           <a className="text-link" href={`/${lang}/insights`}>
             {tr(lang, "Zum Blog", "Read the blog", "До блогу", "Открыть блог")}{" "}
-            ↗
+            <ArrowUpRight className="ui-icon" aria-hidden="true" strokeWidth={1.5} />
           </a>
         </div>
         <div className="journal-preview">
@@ -383,7 +384,7 @@ export function Home({ lang }: { lang: Locale }) {
           </h2>
           <p>{c.contactBody}</p>
           <a className="button" href={`/${lang}/contact`}>
-            {c.cta} <span>↗</span>
+            {c.cta} <span><ArrowUpRight className="ui-icon" aria-hidden="true" strokeWidth={1.5} /></span>
           </a>
         </div>
       </section>

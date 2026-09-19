@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import {
   type Article,
   type ArticleBlock,
@@ -168,7 +169,7 @@ export function ArticlePage({ article: a }: { article: Article }) {
               <ul>
                 {a.references.map((r) => (
                   <li key={r.url}>
-                    <a href={r.url}>{r.title} ↗</a>
+                    <a href={r.url}>{r.title} <ArrowUpRight className="ui-icon" aria-hidden="true" strokeWidth={1.5} /></a>
                   </li>
                 ))}
               </ul>
@@ -216,7 +217,7 @@ export function ArticlePage({ article: a }: { article: Article }) {
               parameters={{ slug: a.slug, service: "google_ads" }}
             >
               {c.cta}
-              <span>↗</span>
+              <span><ArrowUpRight className="ui-icon" aria-hidden="true" strokeWidth={1.5} /></span>
             </TrackedLink>
           </div>
           {related.length > 0 && (

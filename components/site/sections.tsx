@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import { AnalyticsConsent } from "./analytics-consent";
 import { publishedArticles } from "@/lib/content/articles";
 import { InteractiveWordmark } from "./interactive-wordmark";
@@ -47,7 +48,7 @@ export function Pricing({
                 event="pricing_cta_click"
                 parameters={{ service: s.id, location: "pricing" }}
               >
-                {c.serviceCta(s.name)} ↗
+                {c.serviceCta(s.name)} <ArrowUpRight className="ui-icon" aria-hidden="true" strokeWidth={1.5} />
               </TrackedLink>
             </div>
             <div className="scope-row">
@@ -113,7 +114,7 @@ export function Footer({ lang, path }: { lang: Locale; path: string }) {
               event="linkedin_click"
               href={business.founder.linkedin}
             >
-              LinkedIn ↗
+              LinkedIn <ArrowUpRight className="ui-icon" aria-hidden="true" strokeWidth={1.5} />
             </TrackedLink>
           )}
           <Languages lang={lang} path={path} />
@@ -164,7 +165,7 @@ export function BottomCTA({
         href={`/${lang}/contact${service ? `?service=${service}` : ""}`}
       >
         {c.cta}
-        <span>↗</span>
+        <span><ArrowUpRight className="ui-icon" aria-hidden="true" strokeWidth={1.5} /></span>
       </a>
     </section>
   );
