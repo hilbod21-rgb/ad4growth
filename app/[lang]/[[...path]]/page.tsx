@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import { GoogleService } from "@/components/site/google-service";
 import { ChatGPTService } from "@/components/site/chatgpt-service";
 import { operator } from "@/lib/content/operator";
@@ -332,7 +333,10 @@ export default async function Page({ params }: Props) {
               <p className="eyebrow">LET’S TALK BUSINESS</p>
               <h1 className="pre-line">{c.contactTitle}</h1>
               <p>{c.contactBody}</p>
-              <a className="text-link" href="mailto:contact@ad4growth.com">contact@ad4growth.com ↗</a>
+              <div className="contact-email">
+                <p className="eyebrow">E-MAIL</p>
+                <a className="text-link" href="mailto:contact@ad4growth.com">contact@ad4growth.com <ArrowUpRight className="ui-icon" aria-hidden="true" strokeWidth={1.5} /></a>
+              </div>
               <div className="contact-signature">
                 AD4GROWTH
                 <br />
@@ -384,7 +388,7 @@ function Insights({ lang }: { lang: Locale }) {
           >
             <span className="eyebrow">{a.category}</span>
             <h2>{a.title}</h2>
-            <span className="article-read">{a.readingMinutes} min ↗</span>
+            <span className="article-read">{a.readingMinutes} min <ArrowUpRight className="ui-icon" aria-hidden="true" strokeWidth={1.5} /></span>
           </a>
         ))}
       </section>
