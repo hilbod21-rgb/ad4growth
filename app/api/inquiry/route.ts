@@ -22,7 +22,9 @@ export async function POST(request: Request) {
   if (!validated.success)
     return Response.json({ error: "validation" }, { status: 422 });
   // Trust this header only when the documented reverse proxy overwrites it.
-  const client = process.env.TRUST_PROXY === "1" ? request.headers.get("x-real-ip") || "unknown" : "local";
+  const client = process.env.INQUIRY_DELIVERY === "cloudflare"
+    ? request.headers.get("cf-connecting-ip") || "unknown"
+    : process.env.TRUST_PROXY === "1" ? request.headers.get("x-real-ip") || "unknown" : "local";
   const now = Date.now();
   for (const [key, value] of attempts) if (value.reset < now) attempts.delete(key);
   const rate = attempts.get(client) || {count: 0, reset: now + 600000};
