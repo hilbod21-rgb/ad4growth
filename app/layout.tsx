@@ -6,7 +6,17 @@ export const metadata: Metadata = {
   description:
     "Google Ads und ChatGPT Ads. Paid Acquisition, Measurement und Optimization.",
   verification: { google: process.env.GOOGLE_SITE_VERIFICATION || undefined },
-  icons: { icon: "/favicon.svg?v=olive-orange" },
+  metadataBase: new URL("https://ad4growth.com"),
+  manifest: "/site.webmanifest",
+  icons: {
+    icon: [
+      { url: "/favicon.svg?v=green-4", type: "image/svg+xml" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
 };
 export default async function RootLayout({
   children,
