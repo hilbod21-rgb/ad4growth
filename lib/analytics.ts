@@ -1,4 +1,5 @@
 export type AnalyticsEvent =
+  | "generate_lead"
   | "cta_click"
   | "page_view"
   | "language_change"
