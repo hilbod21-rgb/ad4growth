@@ -4937,7 +4937,7 @@ textarea:focus-visible {
 .interactive-wordmark { color: var(--ink); }
 .interactive-wordmark:is(:hover,:focus-visible) .wordmark-glyph { color: var(--forest); }
 .footer .logo, :root[data-theme="dark"] .footer .logo { background: none; color: var(--ink); animation: none; }
-.button, .new-home .button, .header-cta { background: var(--brand); border-color: var(--brand); color: #080f08; }
+.button, .new-home .button, .header-cta { background: var(--brand); border-color: var(--brand); color: #000; }
 .button:is(:hover,:active,:focus-visible), .new-home .button:is(:hover,:active,:focus-visible), .header-cta:is(:hover,:active,:focus-visible) { background: #1c781c; border-color: #1c781c; color: #fff; }
 .button:disabled { opacity: .65; cursor: default; }
 .language-trigger { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 44px; }
