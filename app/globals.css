@@ -4954,7 +4954,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 
 /* Final UI polish: shared SVG geometry and restrained brand accents. */
 .ui-icon { display: inline-block; width: 1em; height: 1em; flex-shrink: 0; vertical-align: -0.125em; stroke: currentColor; }
-.new-hero h1 span, [data-theme="dark"] .new-hero h1 span { color: #228b22; }
+.new-hero h1 span { color: #228b22; }
+[data-theme="dark"] .new-hero h1 span { color: var(--ink); }
 .language-menu .language-dropdown { display: flex; flex-direction: column; gap: 0; height: auto; min-height: 0; padding: 4px; }
 .language-menu .language-dropdown a { display: flex; align-items: center; min-height: 44px; padding: 8px 12px; }
 .language-menu .language-dropdown a[aria-current="page"] { color: #228b22; background: transparent; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
