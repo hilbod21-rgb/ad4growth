@@ -36,7 +36,7 @@ function pageTitle(lang: Locale, path: string) {
   return path === ""
     ? tr(
         lang,
-        "Performance Marketing: Google Ads & ChatGPT Ads",
+        "Performance Marketing mit Google Ads & ChatGPT Ads",
         "Performance Marketing: Google Ads & ChatGPT Ads",
         "Google Ads та ChatGPT Ads для вимірюваного зростання",
         "Google Ads и ChatGPT Ads для измеримого роста",
@@ -104,10 +104,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       url,
       siteName: business.brand,
+      images: [{ url: business.domain + "/og-image.png", width: 1200, height: 630, alt: "AD4GROWTH — Performance Marketing · Paid Acquisition" }],
       locale: { de: "de_DE", en: "en_GB", uk: "uk_UA", ru: "ru_RU" }[lang],
       type: p.startsWith("insights/") ? "article" : "website",
     },
-    twitter: { card: "summary", title, description },
+    twitter: { card: "summary_large_image", title, description, images: [business.domain + "/og-image.png"] },
     robots:
       (p.startsWith("insights/") &&
         findArticle(lang, p.slice(9))?.status !== "published") ||
@@ -339,7 +340,7 @@ export default async function Page({ params }: Props) {
               </div>
             </div>
             <Suspense>
-              <ContactForm lang={lang} deliveryConfigured={!!(process.env.RESEND_API_KEY && process.env.INQUIRY_FROM && process.env.INQUIRY_TO)} />
+              <ContactForm lang={lang} deliveryConfigured={process.env.INQUIRY_DELIVERY === "cloudflare" || !!(process.env.RESEND_API_KEY && process.env.INQUIRY_FROM && process.env.INQUIRY_TO)} />
             </Suspense>
           </section>
         ) : slug === "insights" ? (
