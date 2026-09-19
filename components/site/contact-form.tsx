@@ -57,6 +57,8 @@ export function ContactForm({ lang, deliveryConfigured = false }: { lang: Locale
     "idle" | "sending" | "success" | "unconfigured" | "error" | "validation"
   >("idle");
   const started = useRef(false);
+  const submitting = useRef(false);
+  const converted = useRef(new Set<string>());
   const [comm, setComm] = useState("email");
   const labels = tr(
     lang,
@@ -173,6 +175,8 @@ export function ContactForm({ lang, deliveryConfigured = false }: { lang: Locale
       setState("validation");
       return;
     }
+    if (submitting.current || state === "success") return;
+    submitting.current = true;
     setState("sending");
     track("contact_form_attempt", {
       service: services.join(","),
@@ -192,16 +196,21 @@ export function ContactForm({ lang, deliveryConfigured = false }: { lang: Locale
       };
       if (r.ok && answer.ok && answer.reference) {
         setState("success");
-        track("contact_form_submit", {
+        if (!converted.current.has(answer.reference)) {
+          converted.current.add(answer.reference);
+          track("generate_lead", {
           service: services.join(","),
           locale: lang,
-          status: "delivered",
+          status: "accepted",
         });
+        }
       } else {
         setState(answer.error === "unconfigured" ? "unconfigured" : "error");
       }
     } catch {
       setState("error");
+    } finally {
+      submitting.current = false;
     }
   }
   return (
@@ -378,7 +387,7 @@ export function ContactForm({ lang, deliveryConfigured = false }: { lang: Locale
         .
       </p>
       <div className="form-actions">
-        <button className="button" type="submit" disabled={state === "sending"}>
+        <button className="button" type="submit" disabled={state === "sending" || state === "success"}>
           {state === "sending"
             ? tr(lang, "Wird gesendet…", "Sending…", "Надсилання…", "Отправка…")
             : tr(

@@ -34,7 +34,7 @@ export function InteractiveWordmark({ lang }: { lang: Locale }) {
           if (element.matches(actionSelector)) {
             animations.push(element.animate([
               { boxShadow: '0 0 0 0 transparent' },
-              { boxShadow: '0 0 0 5px color-mix(in srgb, var(--orange) 24%, transparent)', offset: .35 },
+              { boxShadow: '0 0 0 5px color-mix(in srgb, var(--brand) 24%, transparent)', offset: .35 },
               { boxShadow: '0 0 0 0 transparent' }
             ], {duration: 850}));
             const arrow = element.querySelector('span');
@@ -44,7 +44,7 @@ export function InteractiveWordmark({ lang }: { lang: Locale }) {
           } else {
             animations.push(element.animate([
               {transform:'translateY(0) rotate(0)'},
-              {transform:'translateY(-4px) rotate(-2deg)'},
+              {transform:'translateY(-2px) rotate(0)'},
               {transform:'translateY(0) rotate(0)'}
             ], {duration:650}));
           }
@@ -82,7 +82,7 @@ export function InteractiveWordmark({ lang }: { lang: Locale }) {
       const force = Math.max(0, 1 - distance / 95);
       const horizontal = distance < 1 ? 0 : dx / distance;
       const vertical = distance < 1 ? -1 : dy / distance;
-      letter.style.transform = `translate(${horizontal * force * 22}px, ${vertical * force * 19}px) rotate(${horizontal * force * 12}deg)`;
+      letter.style.transform = `translate(${horizontal * force * 8}px, ${vertical * force * 6}px) rotate(${horizontal * force * 4}deg)`;
     });
   }
 

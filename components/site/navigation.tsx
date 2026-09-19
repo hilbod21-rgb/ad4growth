@@ -2,7 +2,7 @@
 import { useEffect, useSyncExternalStore } from "react";
 import { InteractiveWordmark } from "./interactive-wordmark";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, ChevronDown, Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { business, type Locale } from "@/lib/config";
 import { copy } from "@/lib/content/copy";
@@ -48,7 +48,7 @@ export function Languages({ lang, path }: { lang: Locale; path: string }) {
   return (
     <details className="language-menu">
       <summary className="language-trigger" aria-label="Choose language">
-        {lang.toUpperCase()} <span aria-hidden="true">⌄</span>
+        {lang.toUpperCase()} <ChevronDown aria-hidden="true" size={14} />
       </summary>
       <nav className="language-dropdown" aria-label="Languages">
         {business.languages.map((l) => (
@@ -143,7 +143,7 @@ export function Header({ lang, path, blogEnabled = false }: { lang: Locale; path
         <ThemeToggle lang={lang} />
         <Languages lang={lang} path={path} />
         <details className="mobile-menu" key={usePathname()}>
-          <summary aria-label="Menu">☰</summary>
+          <summary aria-label="Menu"><Menu aria-hidden="true" size={22} /></summary>
           <nav>
             {links.map((s, i) => s === "insights" && !blogEnabled ? null : (
               <a key={s} href={`/${lang}/${s}`}>
