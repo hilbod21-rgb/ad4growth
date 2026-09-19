@@ -8,8 +8,8 @@ export function copy(l: Locale) {
       l,
       ["Google Ads", "ChatGPT Ads", "Blog", "Über uns", "Preise"],
       ["Google Ads", "ChatGPT Ads", "Blog", "About", "Pricing"],
-      ["Google Ads", "ChatGPT Ads", "Blog", "Про AD4GROWTH", "Ціни"],
-      ["Google Ads", "ChatGPT Ads", "Blog", "Об AD4GROWTH", "Цены"],
+      ["Google Ads", "ChatGPT Ads", "Blog", "Про нас", "Ціни"],
+      ["Google Ads", "ChatGPT Ads", "Blog", "О нас", "Цены"],
     ),
     cta: tr(
       l,

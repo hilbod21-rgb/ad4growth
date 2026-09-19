@@ -3,7 +3,7 @@ import { tr } from "./copy";
 
 export const operator = {
   name: "Bohdan S.",
-  role: "Performance Marketing · Product",
+  role: "Product Marketing Manager",
   type: "Person" as const,
   portrait: "/images/operator.jpeg",
   linkedin: "https://www.linkedin.com/in/bohdan-pm",
