@@ -4955,7 +4955,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 /* Final UI polish: shared SVG geometry and restrained brand accents. */
 .ui-icon { display: inline-block; width: 1em; height: 1em; flex-shrink: 0; vertical-align: -0.125em; stroke: currentColor; }
 .new-hero h1 span { color: #228b22; }
-[data-theme="dark"] .new-hero h1 span { color: var(--ink); }
+[data-theme="dark"] .new-hero h1 span { color: #228b22; }
 .language-menu .language-dropdown { display: flex; flex-direction: column; gap: 0; height: auto; min-height: 0; padding: 4px; }
 .language-menu .language-dropdown a { display: flex; align-items: center; min-height: 44px; padding: 8px 12px; }
 .language-menu .language-dropdown a[aria-current="page"] { color: #228b22; background: transparent; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
@@ -4969,3 +4969,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 /* Explicit foregrounds also repaint correctly when Safari switches themes. */
 .interactive-wordmark .wordmark-glyph, .theme-toggle svg { color: var(--ink); }
 .interactive-wordmark:is(:hover,:focus-visible) .wordmark-glyph { color: var(--forest); }
+
+/* Small UI patch: pricing notes and existing responsive controls. */
+.pricing-footnote { margin-top: 18px; line-height: 1.6; }
+.pricing-footnote .pricing-footnote-label { display: block; margin-bottom: 6px; font-size: 11px; font-weight: 600; letter-spacing: .06em; }
+.pricing-footnote .launch-label { color: #228b22; }
+.analytics-consent button.consent-accept { background: #228b22; border-color: #228b22; color: #000; }
+@media (max-width: 1024px) {
+ .language-menu .language-dropdown { width: 164px; max-width: calc(100vw - 32px); min-width: 0; box-sizing: border-box; }
+ .language-menu .language-dropdown a { flex-shrink: 0; white-space: nowrap; }
+ .footer .language-menu .language-dropdown { left: 0; right: auto; top: auto; bottom: 100%; }
+ .analytics-consent { box-sizing: border-box; max-height: calc(100dvh - 24px); overflow-y: auto; }
+ .analytics-consent button { min-width: 0; min-height: 44px; overflow-wrap: anywhere; }
+}
