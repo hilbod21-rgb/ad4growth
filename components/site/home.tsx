@@ -138,17 +138,8 @@ export function Home({ lang }: { lang: Locale }) {
                 {euro(business.minimumMediaBudget)} {c.month}
               </strong>
             </div>
-            <p className="offer-note">{c.taxNote}</p>
-            <p className="offer-note">
-              {c.launchNote.replace("{n}", String(business.launch.clientLimit))}{" "}
-              {tr(
-                lang,
-                "Der passende Werbeetat hängt von Markt und Ziel ab.",
-                "The right budget depends on your market and objective.",
-                "Потрібний бюджет залежить від ринку та мети.",
-                "Подходящий бюджет зависит от рынка и цели.",
-              )}
-            </p>
+            <p className="offer-note pricing-footnote"><strong className="pricing-footnote-label">{c.pricesLabel}</strong>{c.taxNote}</p>
+            {c.launchNote && <p className="offer-note pricing-footnote"><strong className="pricing-footnote-label launch-label">{c.launchLabel.replace("{n}", String(business.launch.clientLimit))}</strong>{c.launchNote}</p>}
           </aside>
         </section>
       </div>

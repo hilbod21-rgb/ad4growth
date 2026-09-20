@@ -24,10 +24,8 @@ export function ServicePrice({ lang, chat }: { lang: Locale; chat: boolean }) {
         {c.media}: {tr(lang, "ab", "from", "від", "от")}{" "}
         {euro(business.minimumMediaBudget)} {c.month}.
       </p>
-      <p className="service-tax-note">{c.taxNote}</p>
-      <p className="service-launch-note">
-        {c.launchNote.replace("{n}", String(business.launch.clientLimit))}
-      </p>
+      <p className="service-tax-note pricing-footnote"><strong className="pricing-footnote-label">{c.pricesLabel}</strong>{c.taxNote}</p>
+      {c.launchNote && <p className="service-launch-note pricing-footnote"><strong className="pricing-footnote-label launch-label">{c.launchLabel.replace("{n}", String(business.launch.clientLimit))}</strong>{c.launchNote}</p>}
     </div>
   );
 }

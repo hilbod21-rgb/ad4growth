@@ -67,7 +67,7 @@ export function AnalyticsConsent({ lang }: { lang: Locale }) {
     <button className="analytics-settings" onClick={() => setOpen(true)}>{t[0]}</button>
     {open && <section className="analytics-consent" role="region" aria-label={t[0]}>
       <p>{t[1]} <a href={`/${lang}/datenschutz`}>{t[4]}</a></p>
-      <div><button onClick={() => choose(false)}>{t[3]}</button><button onClick={() => choose(true)}>{t[2]}</button></div>
+      <div><button onClick={() => choose(false)}>{t[3]}</button><button className="consent-accept" onClick={() => choose(true)}>{t[2]}</button></div>
     </section>}
   </>;
 }

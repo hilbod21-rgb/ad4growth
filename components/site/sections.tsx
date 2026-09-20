@@ -80,10 +80,8 @@ export function Pricing({
           </Fragment>
         ))}
       </div>
-      <p className="pricing-note">
-        {c.launchNote.replace("{n}", String(business.launch.clientLimit))}{" "}
-        {c.taxNote}
-      </p>
+      <p className="pricing-note pricing-footnote"><strong className="pricing-footnote-label">{c.pricesLabel}</strong>{c.taxNote}</p>
+      {c.launchNote && <p className="pricing-note pricing-footnote"><strong className="pricing-footnote-label launch-label">{c.launchLabel.replace("{n}", String(business.launch.clientLimit))}</strong>{c.launchNote}</p>}
       {(!service || service === "chatgptAds") && (
         <p className="pricing-note">{c.availability}</p>
       )}
